@@ -7,22 +7,39 @@ Chào mừng bạn đến với dự án Next.js của chúng tôi! Dưới đâ
 Alpha_Storage
 
 ├── public/               # Các tài nguyên tĩnh (hình ảnh, fonts, v.v.) sẽ được phục vụ trực tiếp
+
 ├── src/                  # Thư mục chứa toàn bộ mã nguồn chính của dự án
+
 │   ├── api/              # Các API routes cho server-side logic
+
 │   ├── app/              # # Các trang chính của ứng dụng, tuân theo cấu trúc routing của Next.js
+
 │   ├── components/       # Các React components dùng chung
+
 │   ├── hooks/            # Các custom hooks
+
 │   ├── layouts/          # Các layout dùng chung cho các page
+
 │   ├── lib/              # Các thư viện hoặc utilities dùng chung
+
 │   ├── services/         # Các service functions để kết nối với backend (API, GraphQL)
+
 │   ├── store/            # Quản lý trạng thái (Redux, Zustand, hoặc Context API)
+
 │   ├── types/            # Định nghĩa TypeScript types hoặc interfaces
+
 │   ├── utils/            # Các hàm tiện ích khác, không thuộc thư viện chính
+
 │   └── views/            # Các thành phần giao diện lớn, kết hợp các components nhỏ
+
 ├── .env.local            # Các biến môi trường cho cấu hình local
+
 ├── next.config.js        # Cấu hình của Next.js
+
 ├── tsconfig.json         # Cấu hình TypeScript
+
 ├── package.json          # Các dependency của dự án
+
 └── README.md             # Tài liệu dự án
 
 
