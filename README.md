@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dự Án Next.js
 
-## Getting Started
+Chào mừng bạn đến với dự án Next.js của chúng tôi! Dưới đây là cấu trúc thư mục của dự án cùng với các mô tả chi tiết về từng thư mục và tệp.
 
-First, run the development server:
+## Cấu trúc Thư mục
+Alpha_Storage
+├── public/               # Các tài nguyên tĩnh (hình ảnh, fonts, v.v.) sẽ được phục vụ trực tiếp
+├── src/                  # Thư mục chứa toàn bộ mã nguồn chính của dự án
+│   ├── api/              # Các API routes cho server-side logic
+│   ├── app/              # # Các trang chính của ứng dụng, tuân theo cấu trúc routing của Next.js
+│   ├── components/       # Các React components dùng chung
+│   ├── hooks/            # Các custom hooks
+│   ├── layouts/          # Các layout dùng chung cho các page
+│   ├── lib/              # Các thư viện hoặc utilities dùng chung
+│   ├── services/         # Các service functions để kết nối với backend (API, GraphQL)
+│   ├── store/            # Quản lý trạng thái (Redux, Zustand, hoặc Context API)
+│   ├── types/            # Định nghĩa TypeScript types hoặc interfaces
+│   ├── utils/            # Các hàm tiện ích khác, không thuộc thư viện chính
+│   └── views/            # Các thành phần giao diện lớn, kết hợp các components nhỏ
+├── .env.local            # Các biến môi trường cho cấu hình local
+├── next.config.js        # Cấu hình của Next.js
+├── tsconfig.json         # Cấu hình TypeScript
+├── package.json          # Các dependency của dự án
+└── README.md             # Tài liệu dự án
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Giải thích chi tiết
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **`public/`**: Chứa các tài nguyên tĩnh như hình ảnh, fonts, và các tệp khác có thể được phục vụ trực tiếp từ máy chủ. Bất kỳ tệp nào nằm trong thư mục này đều có thể được truy cập qua đường dẫn gốc của ứng dụng.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`src/`**: Thư mục chính chứa toàn bộ mã nguồn của dự án.
+  - **`api/`**: Chứa các route API cho logic server-side, cho phép chúng ta xử lý các yêu cầu HTTP từ client, ví dụ như đăng nhập, lấy dữ liệu sản phẩm.
+  - **`app/`**: Chứa các trang của ứng dụng (ví dụ: Trang chính, Trang sản phẩm). Mỗi thư mục con trong thư mục này tương ứng với một trang trong ứng dụng, tuân theo quy tắc routing của Next.js.
+  - **`components/`**: Các thành phần React dùng chung (ví dụ: button, form, modal) có thể được sử dụng lại trên nhiều trang khác nhau.
+  - **`hooks/`**: Chứa các custom hooks để tái sử dụng logic giữa các components (ví dụ: useFetch để lấy dữ liệu từ API).
+  - **`layouts/`**: Các layout dùng chung cho các trang (ví dụ: header, footer), giúp duy trì tính nhất quán trong thiết kế.
+  - **`lib/`**: Chứa các thư viện hoặc utility functions (ví dụ: định dạng ngày giờ, mã hóa) mà nhiều phần khác của ứng dụng có thể sử dụng.
+  - **`services/`**: Các hàm chức năng để kết nối với backend (ví dụ: API REST hoặc GraphQL) và xử lý dữ liệu nhận về.
+  - **`store/`**: Quản lý trạng thái ứng dụng (ví dụ: trạng thái đăng nhập, giỏ hàng), có thể sử dụng Redux, Zustand hoặc Context API tùy theo nhu cầu.
+  - **`types/`**: Định nghĩa các kiểu hoặc interface của TypeScript (ví dụ: kiểu dữ liệu cho sản phẩm, người dùng), giúp đảm bảo tính chính xác trong mã nguồn.
+  - **`utils/`**: Các hàm tiện ích khác (ví dụ: hàm chuyển đổi đơn vị, lọc dữ liệu) không thuộc thư viện chính nhưng cần thiết cho các hoạt động hàng ngày trong ứng dụng.
+  - **`views/`**: Các thành phần giao diện lớn (ví dụ: Trang sản phẩm, Trang giỏ hàng), kết hợp từ các components nhỏ để tạo thành giao diện hoàn chỉnh.
 
-## Learn More
+- **`.env.local`**: Chứa các biến môi trường cho cấu hình local, cho phép chúng ta giữ thông tin nhạy cảm ngoài mã nguồn (ví dụ: mật khẩu API, chuỗi kết nối cơ sở dữ liệu).
 
-To learn more about Next.js, take a look at the following resources:
+- **`next.config.js`**: Tệp cấu hình của Next.js, nơi chúng ta có thể tùy chỉnh các thiết lập của ứng dụng như cấu hình các plugin hoặc định nghĩa các biến môi trường.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **`tsconfig.json`**: Tệp cấu hình TypeScript, định nghĩa cách thức biên dịch mã TypeScript sang JavaScript, bao gồm các quy tắc và cài đặt cho TypeScript.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **`package.json`**: Chứa danh sách các dependency của dự án (ví dụ: React, Next.js) cùng với các scripts để chạy ứng dụng (ví dụ: khởi động ứng dụng, chạy kiểm tra).
 
-## Deploy on Vercel
+- **`README.md`**: Tài liệu mô tả dự án, cung cấp thông tin cần thiết cho người dùng và các nhà phát triển khác, bao gồm cách cài đặt, cấu hình và chạy ứng dụng.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Cách Chạy Dự Án
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Để chạy dự án trên máy local, bạn cần:
+
+1. **Cài đặt các dependency**:  
+   ```bash
+   npm install
+
+2. **Chạy ứng dụng**:  
+   ```bash
+   npm run dev
+
+Dự án sẽ chạy tại http://localhost:3000.
+
+## Liên hệ
+
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với tôi qua email hoặc mở một issue trên GitHub.
+Xin cảm ơn!
