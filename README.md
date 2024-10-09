@@ -1,6 +1,6 @@
 # Dự Án Next.js
 
-Chào mừng bạn đến với dự án Next.js của chúng tôi! Dưới đây là cấu trúc thư mục của dự án cùng với các mô tả chi tiết về từng thư mục và tệp.
+Chào mừng bạn đến với dự án Alpha Storage! Dưới đây là cấu trúc thư mục của dự án cùng với các mô tả chi tiết về từng thư mục:
 
 ## Cấu trúc Thư mục
 
@@ -72,7 +72,7 @@ Alpha_Storage
 
 ## Cách Chạy Dự Án
 
-Để chạy dự án trên máy local, bạn cần:
+Để chạy dự án:
 
 1. **Cài đặt các dependency**:  
    ```bash
@@ -86,5 +86,5 @@ Dự án sẽ chạy tại http://localhost:3000.
 
 ## Liên hệ
 
-Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với tôi qua email hoặc mở một issue trên GitHub.
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với tôi qua zalo.
 Xin cảm ơn!
