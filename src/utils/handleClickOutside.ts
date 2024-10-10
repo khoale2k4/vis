@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { RefObject, useEffect } from "react";
 
 export const useHandleClickOutsideAlerter = (ref: RefObject<HTMLElement>, setState: React.Dispatch<React.SetStateAction<boolean>>) => {
@@ -13,4 +13,4 @@ export const useHandleClickOutsideAlerter = (ref: RefObject<HTMLElement>, setSta
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [ref, setState]);
-}
+};

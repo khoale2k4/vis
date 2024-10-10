@@ -1,5 +1,5 @@
 import Footer from "@/components/footer";
-import Navbar from "@/components/navbar"
+import Navbar from "@/components/navbar";
 
 const exampleLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -11,6 +11,6 @@ const exampleLayout = ({ children }: { children: React.ReactNode }) => {
             <Footer />
         </div>
     );
-}
+};
 
 export default exampleLayout;

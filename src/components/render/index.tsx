@@ -8,7 +8,7 @@ const RenderCase = ({ children, renderIf, suspense }: RenderCaseProps) => {
             </div>
             :
             <></>
-    )
+    );
 };
 
 export default RenderCase;

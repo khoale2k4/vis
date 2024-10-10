@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   icons: [{ rel: "favicon", type: 'image/ico', url: "/favicon.ico" }],
   generator: 'nhatdev',
   authors: [{ name: 'nhatdev' }],
-  creator: 'nhatdev'
-}
+  creator: 'nhatdev',
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
@@ -20,5 +20,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
       </body>
     </html >
-  )
-}
+  );
+};

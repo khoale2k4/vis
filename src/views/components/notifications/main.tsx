@@ -1,7 +1,6 @@
 import Progress from '@/components/progress';
 
 const NotificationContent = ({ message, progressWidth }: NotificationContentProps) => {
-    console.log(progressWidth)
     return (
         <div>
             <p className="text-sm text-gray-800 py-4">{message}</p>

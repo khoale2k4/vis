@@ -1,13 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface LanguageState {
-    locale: 'en' | 'vi';
-}
-
 const getInitialLocale = (): 'en' | 'vi' => {
     const path = typeof window !== 'undefined' ? window.location.pathname : '';
-    if (path.startsWith('/en')) return 'en';
-    if (path.startsWith('/vi')) return 'vi';
+    if (path.startsWith('/en')) { return 'en'; }
+    if (path.startsWith('/vi')) { return 'vi'; }
 };
 
 const initialState: LanguageState = {

@@ -84,7 +84,27 @@ Alpha_Storage
 
 Dự án sẽ chạy tại http://localhost:3000.
 
+## Quy định trước khi push branch
+
+1. **Kiểm tra lỗi eslint bằng câu lệnh**:  
+   ```bash
+   npm run lint
+
+2. **Kiểm tra lỗi khi build dự án bằng câu lệnh**:  
+   ```bash
+   npm run build
+
+Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu merge
+
+## Quy định đặt tên branch
+
+1. **Branch với các tính năng mới, hãy đặt tên branch với tiền tố**:  
+   /Feature
+
+2. **Branch với mục đích sửa lỗi những tính năng cũ, hãy đặt tên branch với tiền tố**:  
+   /Fix
+
 ## Liên hệ
 
-Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với tôi qua zalo.
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với mình qua zalo.
 Xin cảm ơn!

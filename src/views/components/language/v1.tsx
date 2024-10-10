@@ -9,8 +9,8 @@ const LanguageSwitcherV1 = () => {
     const locale = store.getState().language.locale;
 
     const handleToggle = () => {
-        const newLocale = locale === "vi" ? "en" : "vi";
-        dispatch(newLocale === "vi" ? setLanguageVi() : setLanguageEn());
+        const newLocale = locale === 'vi' ? 'en' : 'vi';
+        dispatch(newLocale === 'vi' ? setLanguageVi() : setLanguageEn());
     };
 
     return (

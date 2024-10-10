@@ -18,10 +18,11 @@ const Notifications = () => {
     const handleCloseNotification = (id: string) => {
         dispatch(removeNotification(id));
         setProgresses((prev) => {
+            //eslint-disable-next-line
             const { [id]: _, ...rest } = prev;
             return rest;
         });
-    }
+    };
 
     useEffect(() => {
         const timers: NodeJS.Timeout[] = [];
@@ -33,6 +34,7 @@ const Notifications = () => {
                 const timer = setTimeout(() => {
                     dispatch(removeNotification(notification.id));
                     setProgresses((prev) => {
+                        //eslint-disable-next-line
                         const { [notification.id]: _, ...rest } = prev;
                         return rest;
                     });

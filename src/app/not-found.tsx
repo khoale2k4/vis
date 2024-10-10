@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 export default function NotFound() {
     return (
@@ -7,5 +7,5 @@ export default function NotFound() {
             <p>Could not find requested resource</p>
             <Link href="/" className='underline text-blue-500'>Return Home</Link>
         </div>
-    )
-}
+    );
+};

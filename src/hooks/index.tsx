@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { store } from "@/store";
 import { Provider } from "react-redux";
 
@@ -8,4 +8,4 @@ export default function ProviderWrapper({ children }: Readonly<{ children: React
             {children}
         </Provider>
     );
-}
+};

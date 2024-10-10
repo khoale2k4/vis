@@ -10,17 +10,17 @@ import { usePathname, useRouter } from "next/navigation";
 const LanguageSwitcher = () => {
     const router = useRouter();
     const pathname = usePathname();
-    const [isClient, setIsClient] = useState(false)
+    const [isClient, setIsClient] = useState<boolean>(false);
     const locale = useSelector((state: RootState) => state.language.locale);
 
     useEffect(() => {
-        setIsClient(true)
-    }, [])
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         const newPath = pathname.replace(/^\/.{2}/, '');
         router.push(`/${locale}${newPath}`);
-    }, [locale]);
+    }, [locale, pathname, router]);
 
     return (
         <div className="w-full h-full">

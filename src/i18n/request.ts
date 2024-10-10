@@ -3,9 +3,9 @@ import { getRequestConfig } from 'next-intl/server';
 import { routing } from './routing';
 
 export default getRequestConfig(async ({ locale }) => {
-    if (!routing.locales.includes(locale as any)) notFound();
+    if (!routing.locales.includes(locale as LocaleType)) { notFound(); }
 
     return {
-        messages: (await import(`../language/${locale}.json`)).default
+        messages: (await import(`../language/${locale}.json`)).default,
     };
 });

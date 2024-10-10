@@ -4,6 +4,6 @@ const Container = ({ className, children }: ContainerProps) => {
             {children}
         </div>
     );
-}
+};
 
 export default Container;
