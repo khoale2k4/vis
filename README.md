@@ -1,4 +1,4 @@
-# Dự Án Next.js
+# Dự Án Alpha Storage
 
 Chào mừng bạn đến với dự án Alpha Storage! Dưới đây là cấu trúc thư mục của dự án cùng với các mô tả chi tiết về từng thư mục:
 
@@ -70,7 +70,7 @@ Alpha_Storage
 
 - **`README.md`**: Tài liệu mô tả dự án, cung cấp thông tin cần thiết cho người dùng và các nhà phát triển khác, bao gồm cách cài đặt, cấu hình và chạy ứng dụng.
 
-## Cách Chạy Dự Án
+## Cách chạy dự án
 
 Để chạy dự án:
 
@@ -94,15 +94,19 @@ Dự án sẽ chạy tại http://localhost:3000.
    ```bash
    npm run build
 
-Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu merge
+Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu merge.
+
+## Quy định khi push branch
+
+**Không được add file .env.local**:  
 
 ## Quy định đặt tên branch
 
 1. **Branch với các tính năng mới, hãy đặt tên branch với tiền tố**:  
-   /Feature
+   /Feature/
 
 2. **Branch với mục đích sửa lỗi những tính năng cũ, hãy đặt tên branch với tiền tố**:  
-   /Fix
+   /Fix/
 
 ## Liên hệ
 

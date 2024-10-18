@@ -4,7 +4,7 @@ import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import RenderCase from "@/components/render";
-import LanguageSwitcherV1 from "../../views/components/language/v1";
+import LanguageSwitcherV1 from "./versions/v1";
 import { usePathname, useRouter } from "next/navigation";
 
 const LanguageSwitcher = () => {

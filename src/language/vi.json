@@ -1,5 +1,10 @@
 {
     "Login": {
         "Login": "Đăng nhập"
+    },
+    "Notification": {
+        "DefaultTitle": "Thông báo",
+        "DefaultCloseButton": "Đóng",
+        "DefaultSubmitButton": "Xác nhận"
     }
 }

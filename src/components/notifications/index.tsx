@@ -1,24 +1,29 @@
 'use client';
 
-import { RootState } from '@/store';
 import Container from '../container';
 import { MdClose } from 'react-icons/md';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-import { removeNotification } from '@/store/action/notificationsSlice';
-import NotificationContent from '../../views/components/notifications/main';
-import NotificationHeader from '../../views/components/notifications/header';
+import { useNotifications } from '@/hooks/NotificationsProvider';
+import NotificationContent from './components/main';
+import NotificationHeader from './components/header';
+import { useTranslations } from 'next-intl';
+
+const MAX_NOTIFICATIONS = Number(process.env.NEXT_PUBLIC_MAX_NOTIFICATIONS) || 4;
 
 const Notifications = () => {
-    const dispatch = useDispatch();
-    const notifications = useSelector((state: RootState) => state.notifications.notifications);
+    const { state, removeNotification } = useNotifications();
+    const notifications = state.notifications;
     const [progresses, setProgresses] = useState<Record<string, number>>({});
+    const NotificationIntl = useTranslations('Notification')
 
-    const handleCloseNotification = (id: string) => {
-        dispatch(removeNotification(id));
+    const handleCloseNotification = (id: string, event?: React.MouseEvent) => {
+        if (event) {
+            event.stopPropagation();
+        }
+        removeNotification(id);
         setProgresses((prev) => {
-            //eslint-disable-next-line
+            // eslint-disable-next-line
             const { [id]: _, ...rest } = prev;
             return rest;
         });
@@ -32,9 +37,9 @@ const Notifications = () => {
                 setProgresses((prev) => ({ ...prev, [notification.id]: 5000 }));
 
                 const timer = setTimeout(() => {
-                    dispatch(removeNotification(notification.id));
+                    removeNotification(notification.id);
                     setProgresses((prev) => {
-                        //eslint-disable-next-line
+                        // eslint-disable-next-line
                         const { [notification.id]: _, ...rest } = prev;
                         return rest;
                     });
@@ -46,7 +51,7 @@ const Notifications = () => {
         return () => {
             timers.forEach((timer) => clearTimeout(timer));
         };
-    }, [notifications, progresses, dispatch]);
+    }, [notifications, progresses, removeNotification]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -56,7 +61,7 @@ const Notifications = () => {
                     if (newProgresses[id] > 0) {
                         newProgresses[id] -= 100;
                     } else {
-                        dispatch(removeNotification(id));
+                        removeNotification(id);
                         delete newProgresses[id];
                     }
                 });
@@ -66,13 +71,32 @@ const Notifications = () => {
         }, 100);
 
         return () => clearInterval(interval);
-    }, [dispatch]);
+    }, [removeNotification]);
+
+    useEffect(() => {
+        if (notifications.length > MAX_NOTIFICATIONS) {
+            const oldestNotification = notifications[0];
+            removeNotification(oldestNotification.id);
+            setProgresses((prev) => {
+                // eslint-disable-next-line
+                const { [oldestNotification.id]: _, ...rest } = prev;
+                return rest;
+            });
+        }
+    }, [notifications, removeNotification]);
 
     return (
         <div className="fixed bottom-4 right-4 w-52 flex flex-col gap-4">
             <AnimatePresence>
                 {notifications.slice().reverse().map((notification) => {
                     const progressWidth = (progresses[notification.id] || 0) / 5000 * 100;
+
+                    const handleNotificationClick = () => {
+                        if (notification.onClick) {
+                            notification.onClick();
+                        }
+                    };
+
                     return (
                         <motion.div
                             key={notification.id}
@@ -80,12 +104,15 @@ const Notifications = () => {
                             exit={{ opacity: 0, x: 50 }} layout
                             transition={{ animate: { duration: 0.7 }, exit: { duration: 0.2 } }}
                         >
-                            <Container className='p-2 px-3 !rounded-md !shadow-md overflow-clip relative'>
+                            <Container
+                                className="p-2 px-3 !rounded-md !shadow-md overflow-clip relative cursor-pointer"
+                                onClick={handleNotificationClick}
+                            >
                                 <div className="flex justify-between items-center">
-                                    <NotificationHeader title={notification.title} type={notification.type} />
+                                    <NotificationHeader title={notification.title ?? NotificationIntl('DefaultTitle')} type={notification.type} />
                                     <button
                                         className="text-black hover:text-gray-500"
-                                        onClick={() => handleCloseNotification(notification.id)}
+                                        onClick={(e) => handleCloseNotification(notification.id, e)}
                                     >
                                         <MdClose />
                                     </button>

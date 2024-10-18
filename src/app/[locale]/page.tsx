@@ -1,12 +1,10 @@
-import AddNotification from "@/components/addNotifications";
-import Notifications from "@/components/notifications";
+import AddNotification from "@/views/addNotifications";
 
 export default function Home() {
 
   return (
-    <div className="flex justify-center place-items-center">
+    <div className="flex justify-center place-items-center h-full w-full">
       <AddNotification />
-      <Notifications />
     </div>
   );
 };
