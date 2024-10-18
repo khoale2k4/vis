@@ -17,14 +17,14 @@ const AddNotification = () => {
     const [notiType, setNotiType] = useState<'submit' | 'list' | 'normal'>('list');
 
     const handleAddNotification = () => {
-        if (notiType == 'list') {
+        if (notiType === 'list') {
             addNotification({
                 title,
                 message,
                 type,
                 onClick: () => alert(`Notification clicked: ${title}`),
             });
-        } else if (notiType == 'submit') {
+        } else if (notiType === 'submit') {
             addSubmitNotification({
                 title,
                 message,
@@ -32,12 +32,12 @@ const AddNotification = () => {
                     title,
                     message: `Notification clicked: ${title}`,
                 }),
-            })
+            });
         } else {
             addDefaultNotification({
                 title,
                 message,
-            })
+            });
         }
     };
 
@@ -69,7 +69,7 @@ const AddNotification = () => {
                     />
                 </label>
 
-                <RenderCase renderIf={notiType == 'list'}>
+                <RenderCase renderIf={notiType === 'list'}>
                     <label className='flex flex-col gap-2 w-full whitespace-nowrap'>
                         Loại tiêu đề
                         <select

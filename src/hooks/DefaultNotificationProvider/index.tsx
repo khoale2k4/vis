@@ -22,11 +22,7 @@ const defaultNotificationReducer = (state: DefaultNotificationState, action: Def
     }
 };
 
-const DefaultNotificationContext = createContext<{
-    state: DefaultNotificationState;
-    addDefaultNotification: (notification: DefaultNotificationUtility) => void;
-    removeDefaultNotification: () => void;
-} | undefined>(undefined);
+const DefaultNotificationContext = createContext<DefaultNotificationContextType | undefined>(undefined);
 
 const initialState: DefaultNotificationState = {
     openDefaultNotification: false,

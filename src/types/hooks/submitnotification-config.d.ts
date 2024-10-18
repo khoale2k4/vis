@@ -13,3 +13,9 @@ declare type SubmitNotificationState = {
     submitNotification: SubmitNotificationUtility;
     openNotification: boolean;
 };
+
+declare type SubmitNotificationContextType = {
+    state: SubmitNotificationState;
+    addSubmitNotification: (_notification: SubmitNotificationUtility) => void;
+    removeSubmitNotification: () => void;
+};

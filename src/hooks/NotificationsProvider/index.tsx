@@ -27,11 +27,7 @@ const notificationsReducer = (state: NotificationsState, action: NotificationsAc
     }
 };
 
-const NotificationsContext = createContext<{
-    state: NotificationsState;
-    addNotification: (notification: Omit<NotificationUtility, 'id'>) => void;
-    removeNotification: (id: string) => void;
-} | undefined>(undefined);
+const NotificationsContext = createContext<NotificationsContextType | undefined>(undefined);
 
 const initialState: NotificationsState = {
     notifications: [],

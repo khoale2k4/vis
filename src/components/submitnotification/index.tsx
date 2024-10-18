@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import ReactDOM from "react-dom";
 import RenderCase from "../render";
 import LoadingUI from "../loading";
 import { motion } from "framer-motion";
-import React, { useRef, useEffect, FC, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSubmitNotification } from "@/hooks/SubmitNotificationProvider";
 import { useTranslations } from "next-intl";
 
@@ -14,7 +14,7 @@ const SubmitNotification = () => {
     const { submitNotification, openNotification } = state;
     const [loading, setLoading] = useState<boolean>(false);
     const [isVisible, setIsVisible] = useState<boolean>(true);
-    const NotificationIntl = useTranslations('Notification')
+    const NotificationIntl = useTranslations('Notification');
 
     const handleAnimationComplete = () => {
         if (!isVisible) {
@@ -31,9 +31,9 @@ const SubmitNotification = () => {
 
     const handleSubmitClick = async () => {
         if (submitNotification?.submitClick) {
-            setLoading(true)
+            setLoading(true);
             await submitNotification.submitClick();
-            setLoading(false)
+            setLoading(false);
             handleClose();
         }
     };
@@ -52,11 +52,11 @@ const SubmitNotification = () => {
         };
     }, []);
 
-    if (!openNotification || !submitNotification) return null;
+    if (!openNotification || !submitNotification) { return null; };
 
     return ReactDOM.createPortal(
         <motion.div
-            className="fixed top-0 left-0 right-0 bottom-0 flex backdrop-blur-sm 
+            className="fixed top-0 left-0 right-0 bottom-0 flex backdrop-blur-sm
             items-center justify-center bg-[#000000] dark:bg-white/30 bg-opacity-50 z-[100] inset-0 px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: isVisible ? 1 : 0 }}
@@ -66,7 +66,7 @@ const SubmitNotification = () => {
         >
             <motion.div
                 ref={notificationRef}
-                className="relative min-w-full sm:min-w-[300px] sm:max-w-screen 
+                className="relative min-w-full sm:min-w-[300px] sm:max-w-screen
                 max-h-[80vh] xs:max-h-64 bg-white dark:bg-[#242526] rounded-xl p-4 flex flex-col shadow"
                 initial={{ scale: 0 }}
                 animate={{ scale: isVisible ? 1 : 0 }}
@@ -88,7 +88,7 @@ const SubmitNotification = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className="mt-4 px-4 py-2 truncate h-10 rounded-md overflow-clip 
+                        className="mt-4 px-4 py-2 truncate h-10 rounded-md overflow-clip
                         text-black border border-gray-300 dark:text-gray-300 hover:cursor-pointer flex"
                         onClick={handleClose}
                     >
@@ -99,7 +99,7 @@ const SubmitNotification = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className="mt-4 px-4 py-2 truncate h-10 rounded-md overflow-clip 
+                        className="mt-4 px-4 py-2 truncate h-10 rounded-md overflow-clip
                         text-white hover:cursor-pointer flex bg-blue-500"
                         onClick={handleSubmitClick}
                     >

@@ -15,7 +15,7 @@ const Notifications = () => {
     const { state, removeNotification } = useNotifications();
     const notifications = state.notifications;
     const [progresses, setProgresses] = useState<Record<string, number>>({});
-    const NotificationIntl = useTranslations('Notification')
+    const NotificationIntl = useTranslations('Notification');
 
     const handleCloseNotification = (id: string, event?: React.MouseEvent) => {
         if (event) {

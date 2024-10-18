@@ -12,3 +12,9 @@ declare type DefaultNotificationState = {
     defaultNotification: DefaultNotificationUtility;
     openDefaultNotification: boolean;
 };
+
+declare type DefaultNotificationContextType = {
+    state: DefaultNotificationState;
+    addDefaultNotification: (_notification: DefaultNotificationUtility) => void;
+    removeDefaultNotification: () => void;
+};

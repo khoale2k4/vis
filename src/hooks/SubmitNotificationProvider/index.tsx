@@ -22,11 +22,7 @@ const submitNotificationReducer = (state: SubmitNotificationState, action: Submi
     }
 };
 
-const SubmitNotificationContext = createContext<{
-    state: SubmitNotificationState;
-    addSubmitNotification: (notification: SubmitNotificationUtility) => void;
-    removeSubmitNotification: () => void;
-} | undefined>(undefined);
+const SubmitNotificationContext = createContext<SubmitNotificationContextType | undefined>(undefined);
 
 const initialState: SubmitNotificationState = {
     openNotification: false,
