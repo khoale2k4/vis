@@ -10,7 +10,7 @@ const Switch = ({ className = '', color, id, checked, onChange }: SwitchProps) =
             before:bg-white before:shadow-[0_2px_5px_rgba(0,_0,_0,_.2)] before:transition before:content-[""]
             checked:before:translate-x-[22px] hover:cursor-pointer
             dark:bg-white/5 ${color === "red" ? "checked:bg-red-500 dark:checked:bg-red-400"
-                    : color === "blue" ? "checked:bg-blue-500 dark:checked:bg-blue-400"
+                    : color === "blue" ? "checked:bg-blue-500 dark:checked:bg-blue-500"
                         : color === "green" ? "checked:bg-green-500 dark:checked:bg-green-400"
                             : color === "yellow" ? "checked:bg-yellow-500 dark:checked:bg-yellow-400"
                                 : color === "orange" ? "checked:bg-orange-500 dark:checked:bg-orange-400"

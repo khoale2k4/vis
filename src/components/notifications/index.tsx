@@ -2,12 +2,13 @@
 
 import Container from '../container';
 import { MdClose } from 'react-icons/md';
+import { Button } from '@nextui-org/react';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useNotifications } from '@/hooks/NotificationsProvider';
 import NotificationContent from './components/main';
 import NotificationHeader from './components/header';
-import { useTranslations } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNotifications } from '@/hooks/NotificationsProvider';
 
 const MAX_NOTIFICATIONS = Number(process.env.NEXT_PUBLIC_MAX_NOTIFICATIONS) || 4;
 
@@ -86,7 +87,7 @@ const Notifications = () => {
     }, [notifications, removeNotification]);
 
     return (
-        <div className="fixed bottom-4 right-4 w-52 flex flex-col gap-4">
+        <div className="fixed bottom-4 right-4 w-52 flex flex-col gap-4 z-[99]">
             <AnimatePresence>
                 {notifications.slice().reverse().map((notification) => {
                     const progressWidth = (progresses[notification.id] || 0) / 5000 * 100;
@@ -104,22 +105,25 @@ const Notifications = () => {
                             exit={{ opacity: 0, x: 50 }} layout
                             transition={{ animate: { duration: 0.7 }, exit: { duration: 0.2 } }}
                         >
-                            <Container
-                                className="p-2 px-3 !rounded-md !shadow-md overflow-clip relative cursor-pointer"
+                            <Button className='w-full h-full px-0 !rounded-md !shadow-md overflow-clip'
                                 onClick={handleNotificationClick}
                             >
-                                <div className="flex justify-between items-center">
-                                    <NotificationHeader title={notification.title ?? NotificationIntl('DefaultTitle')} type={notification.type} />
-                                    <button
-                                        className="text-black hover:text-gray-500 dark:text-white"
-                                        onClick={(e) => handleCloseNotification(notification.id, e)}
-                                    >
-                                        <MdClose />
-                                    </button>
-                                </div>
+                                <Container
+                                    className="p-2 px-3 relative !rounded-md cursor-pointer w-full"
+                                >
+                                    <div className="flex justify-between items-center">
+                                        <NotificationHeader title={notification.title ?? NotificationIntl('DefaultTitle')} type={notification.type} />
+                                        <button
+                                            className="text-black hover:text-gray-500 dark:text-white"
+                                            onClick={(e) => handleCloseNotification(notification.id, e)}
+                                        >
+                                            <MdClose />
+                                        </button>
+                                    </div>
 
-                                <NotificationContent message={notification.message} progressWidth={progressWidth} />
-                            </Container>
+                                    <NotificationContent message={notification.message} progressWidth={progressWidth} />
+                                </Container>
+                            </Button>
                         </motion.div>
                     );
                 })}

@@ -2,6 +2,7 @@ import { store } from "@/store";
 import { useState } from "react";
 import Dropdown from "@/components/dropdown";
 import RenderCase from "@/components/render";
+import Container from "@/components/container";
 import { MdRadioButtonChecked, MdRadioButtonUnchecked } from "react-icons/md";
 
 const languages: LanguageButtonType[] = [
@@ -29,7 +30,7 @@ const LanguageSwitcherV1 = ({ handleSwitchLanguage }: LanguageVersionProps) => {
             }
             className={"py-2 top-8 -left-[92px]"}
         >
-            <div className="flex min-w-32 w-32 !z-50 flex-col justify-start border dark:border-white/10 rounded-md bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-[#242526] dark:text-white dark:shadow-none">
+            <Container className="flex min-w-32 w-32 !z-50 flex-col justify-start border dark:border-white/10 !rounded-md dark:text-white dark:shadow-none">
                 {languages.map(({ label, localeLabel }, index) => (
                     <div key={localeLabel}>
                         <button
@@ -55,7 +56,7 @@ const LanguageSwitcherV1 = ({ handleSwitchLanguage }: LanguageVersionProps) => {
                         )}
                     </div>
                 ))}
-            </div>
+            </Container>
         </Dropdown>
     );
 };

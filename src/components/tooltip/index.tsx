@@ -5,7 +5,7 @@ const TooltipHorizon = ({ className, children, content, placement }: TooltipProp
         <Tooltip
             label={content}
             placement={placement}
-            className={`w-max rounded-md py-1.5 px-3 text-sm shadow-xl shadow-shadow-500 dark:shadow-none w-50 ${className}`}
+            className={`absolute w-max text-sm dark:shadow-none w-50 ${className}`}
         >
             {children}
         </Tooltip>
