@@ -150,6 +150,7 @@ module.exports = {
       utilsPrimaryDark: "#030391",
       lightContainer: "#ffffff",
       darkContainer: "#242526",
+      darkContainerPrimary: "#3A3B3C",
       gray: {
         50: "#f8f9fa",
         100: "#edf2f7",

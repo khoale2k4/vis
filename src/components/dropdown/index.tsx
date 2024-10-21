@@ -3,11 +3,10 @@
 import { useHandleClickOutsideAlerter } from '@/utils/handleClickOutside';
 import { useState, useRef } from 'react';
 
-
 const Dropdown = ({ button, children, className, animation, position }: DropdownProps) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [openWrapper, setOpenWrapper] = useState(false);
-    useHandleClickOutsideAlerter(wrapperRef, setOpenWrapper);
+    useHandleClickOutsideAlerter({ ref: wrapperRef, setState: setOpenWrapper });
 
     return (
         <div ref={wrapperRef} className="relative flex">

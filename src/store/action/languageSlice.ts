@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const getInitialLocale = (): 'en' | 'vi' => {
     const path = typeof window !== 'undefined' ? window.location.pathname : '';
@@ -22,13 +22,12 @@ const languageSlice = createSlice({
             state.locale = 'en';
             localStorage?.setItem('locale', 'en');
         },
-        // Optional: still keep the generic setLanguage for flexibility
-        // setLanguage: (state, action: PayloadAction<string>) => {
-        //     state.locale = action.payload;
-        //     localStorage.setItem('locale', action.payload);
-        // },
+        setLanguage: (state, action: PayloadAction<LocaleType>) => {
+            state.locale = action.payload;
+            localStorage.setItem('locale', action.payload);
+        },
     },
 });
 
-export const { setLanguageVi, setLanguageEn } = languageSlice.actions;
+export const { setLanguageVi, setLanguageEn, setLanguage } = languageSlice.actions;
 export default languageSlice.reducer;

@@ -4,7 +4,7 @@ import { BiErrorCircle, BiInfoCircle } from 'react-icons/bi';
 
 const NotificationHeader = ({ type, title }: NotificationHeaderProps) => {
     return (
-        <div className='flex gap-2 justify-center place-items-center text-gray-800'>
+        <div className='flex gap-2 justify-center place-items-center text-gray-800 dark:text-white'>
             <RenderCase renderIf={type === 'default'}>
                 <BiInfoCircle />
             </RenderCase>

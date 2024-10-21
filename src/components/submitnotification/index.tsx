@@ -4,17 +4,18 @@ import ReactDOM from "react-dom";
 import RenderCase from "../render";
 import LoadingUI from "../loading";
 import { motion } from "framer-motion";
-import React, { useRef, useEffect, useState } from "react";
-import { useSubmitNotification } from "@/hooks/SubmitNotificationProvider";
 import { useTranslations } from "next-intl";
+import React, { useRef, useState } from "react";
+import { useHandleClickOutsideAlerter } from "@/utils/handleClickOutside";
+import { useSubmitNotification } from "@/hooks/SubmitNotificationProvider";
 
 const SubmitNotification = () => {
-    const notificationRef = useRef<HTMLDivElement>(null);
     const { state, removeSubmitNotification } = useSubmitNotification();
+    const notificationRef = useRef<HTMLDivElement>(null);
     const { submitNotification, openNotification } = state;
     const [loading, setLoading] = useState<boolean>(false);
-    const [isVisible, setIsVisible] = useState<boolean>(true);
     const NotificationIntl = useTranslations('Notification');
+    const [isVisible, setIsVisible] = useState<boolean>(true);
 
     const handleAnimationComplete = () => {
         if (!isVisible) {
@@ -38,20 +39,7 @@ const SubmitNotification = () => {
         }
     };
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (notificationRef.current && !notificationRef.current.contains(event.target as Node)) {
-                handleClose();
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
+    useHandleClickOutsideAlerter({ ref: notificationRef, action: handleClose });
     if (!openNotification || !submitNotification) { return null; };
 
     return ReactDOM.createPortal(

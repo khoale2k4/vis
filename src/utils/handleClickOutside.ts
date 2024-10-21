@@ -1,16 +1,22 @@
 'use client';
-import { RefObject, useEffect } from "react";
+import { useEffect } from "react";
 
-export const useHandleClickOutsideAlerter = (ref: RefObject<HTMLElement>, setState: React.Dispatch<React.SetStateAction<boolean>>) => {
+export const useHandleClickOutsideAlerter = ({ ref, setState, action }: ClickOutsideAlerterProps) => {
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (ref.current && !ref.current.contains(event.target as Node)) {
-                setState(false);
+                if (setState) {
+                    setState(false);
+                }
+                if (action) {
+                    action();
+                }
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [ref, setState]);
+    }, [ref, setState, action]);
 };

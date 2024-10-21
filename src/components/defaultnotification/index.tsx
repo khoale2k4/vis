@@ -2,16 +2,17 @@
 
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import React, { useRef, useEffect, useState } from "react";
-import { useDefaultNotification } from "@/hooks/DefaultNotificationProvider";
 import { useTranslations } from "next-intl";
+import React, { useRef, useState } from "react";
+import { useHandleClickOutsideAlerter } from "@/utils/handleClickOutside";
+import { useDefaultNotification } from "@/hooks/DefaultNotificationProvider";
 
 const DefaultNotification = () => {
-    const notificationRef = useRef<HTMLDivElement>(null);
     const { state, removeDefaultNotification } = useDefaultNotification();
     const { defaultNotification, openDefaultNotification } = state;
     const [isVisible, setIsVisible] = useState<boolean>(true);
     const NotificationIntl = useTranslations('Notification');
+    const notificationRef = useRef<HTMLDivElement>(null);
 
     const handleAnimationComplete = () => {
         if (!isVisible) {
@@ -26,20 +27,7 @@ const DefaultNotification = () => {
         setIsVisible(false);
     };
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (notificationRef.current && !notificationRef.current.contains(event.target as Node)) {
-                handleClose();
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
+    useHandleClickOutsideAlerter({ ref: notificationRef, action: handleClose });
     if (!openDefaultNotification || !defaultNotification) { return null; };
 
     return ReactDOM.createPortal(
