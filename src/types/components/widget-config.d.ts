@@ -1,5 +1,5 @@
 declare type WidgetProps = {
-    icon?: ReactNode | string
-    title?: string
-    subtitle?: string
+    icon?: React.ReactNode | string;
+    title?: string;
+    subtitle?: string;
 };

@@ -12,7 +12,7 @@ const CustomButton = ({ version, id, className, color, onClick, children }: Butt
     const VersionComponent = BUTTON_SWITCHER_VERSIONS[version ?? '1'] || null;
 
     return (
-        <RenderCase renderIf={true} suspense={true}>
+        <RenderCase renderIf={true}>
             <VersionComponent id={id} className={className} color={color} onClick={onClick}>
                 {children}
             </VersionComponent>

@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const { nextui } = require("@nextui-org/react");
 module.exports = {
   darkMode: 'class',
   content: [
@@ -7,6 +8,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/views/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -337,6 +339,7 @@ module.exports = {
     }),
   },
   plugins: [
-    require("tailwindcss-rtl")
+    require("tailwindcss-rtl"),
+    nextui()
   ],
 }

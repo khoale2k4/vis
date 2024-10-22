@@ -11,7 +11,7 @@ const languages: LanguageButtonType[] = [
 ];
 
 const LanguageSwitcherV1 = ({ handleSwitchLanguage }: LanguageVersionProps) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const locale = store.getState().language.locale;
 
     const handleClick = () => {

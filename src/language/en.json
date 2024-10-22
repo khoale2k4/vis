@@ -1,10 +1,16 @@
 {
     "Login": {
-        "Login": "Đăng nhập"
+        "Login": "Login"
     },
     "Notification": {
         "DefaultTitle": "Notification",
         "DefaultCloseButton": "Close",
         "DefaultSubmitButton": "Submit"
+    },
+    "InputField": {
+        "DefaultSelectPlaceHolder": "Select...",
+        "DefaultSelectNoOptions": "No available options",
+        "DefaultSelectSearchPlaceHolder": "Search...",
+        "DefaultTextPlaceHolder": "Enter..."
     }
 }

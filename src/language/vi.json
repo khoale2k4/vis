@@ -6,5 +6,11 @@
         "DefaultTitle": "Thông báo",
         "DefaultCloseButton": "Đóng",
         "DefaultSubmitButton": "Xác nhận"
+    },
+    "InputField": {
+        "DefaultSelectPlaceHolder": "Chọn...",
+        "DefaultSelectNoOptions": "Không có lựa chọn phù hợp",
+        "DefaultSelectSearchPlaceHolder": "Tìm kiếm...",
+        "DefaultTextPlaceHolder": "Nhập..."
     }
 }

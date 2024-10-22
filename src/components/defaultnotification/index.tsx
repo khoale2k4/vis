@@ -50,12 +50,12 @@ const DefaultNotification = () => {
                 transition={{ duration: 0.5 }}
             >
                 <h2 className="text-[#000000] dark:text-gray-500 text-xl font-bold mb-2 text-center">
-                    {defaultNotification.title ?? NotificationIntl('DefaultTitle')}
+                    {defaultNotification.title || NotificationIntl('DefaultTitle')}
                 </h2>
 
                 <div className="overflow-scroll max-h-full w-full no-scrollbar">
                     <p className="text-[#000000] dark:text-white w-full text-center">
-                        {defaultNotification.message ?? defaultNotification.children}
+                        {defaultNotification.message || defaultNotification.children}
                     </p>
                 </div>
 

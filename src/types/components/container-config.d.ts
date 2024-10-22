@@ -1,5 +1,5 @@
 declare type ContainerProps = {
     className?: string;
-    children?: ReactNode;
+    children?: React.ReactNode;
     onClick?: () => void;
 };

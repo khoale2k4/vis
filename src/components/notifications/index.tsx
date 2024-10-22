@@ -112,7 +112,7 @@ const Notifications = () => {
                                     className="p-2 px-3 relative !rounded-md cursor-pointer w-full"
                                 >
                                     <div className="flex justify-between items-center">
-                                        <NotificationHeader title={notification.title ?? NotificationIntl('DefaultTitle')} type={notification.type} />
+                                        <NotificationHeader title={notification.title || NotificationIntl('DefaultTitle')} type={notification.type} />
                                         <button
                                             className="text-black hover:text-gray-500 dark:text-white"
                                             onClick={(e) => handleCloseNotification(notification.id, e)}

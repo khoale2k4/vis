@@ -3,6 +3,9 @@ declare type DropdownProps = {
     position?: string;
     className?: string;
     animation?: string;
-    button?: ReactNode;
-    children?: ReactNode;
+    button?: React.ReactNode;
+    children?: React.ReactNode;
+    openWrapper?: boolean;
+    disabled?: boolean;
+    setOpenWrapper?: React.Dispatch<React.SetStateAction<boolean>>;
 };
