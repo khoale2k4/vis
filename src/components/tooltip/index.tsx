@@ -1,11 +1,11 @@
-import { Tooltip } from "@chakra-ui/tooltip";
-
+import { Tooltip } from "@nextui-org/react";
+// Nếu muốn custom thêm: vào https://nextui.org/docs/components/tooltip và bổ sung props
 const TooltipHorizon = ({ className, children, content, placement }: TooltipProps) => {
     return (
         <Tooltip
-            label={content}
+            content={content}
             placement={placement}
-            className={`absolute w-max text-sm dark:shadow-none w-50 ${className}`}
+            className={`w-max text-sm dark:shadow-none w-50 p-0 ${className}`}
         >
             {children}
         </Tooltip>

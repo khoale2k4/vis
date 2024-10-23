@@ -17,7 +17,7 @@ const AddNotification = () => {
     const { addNotification } = useNotifications();
     const { addSubmitNotification } = useSubmitNotification();
     const { addDefaultNotification } = useDefaultNotification();
-    const [title, setTitle] = useState<string>('Thông báo');
+    const [title, setTitle] = useState<string>('');
     const [message, setMessage] = useState<string>('Some text goes here');
     const [type, setType] = useState<NotificationTypes[]>(['default']);
     const [notiType, setNotiType] = useState<NotiType[]>(['list']);
@@ -38,7 +38,10 @@ const AddNotification = () => {
                 title,
                 message,
                 type: type[0],
-                onClick: () => alert(`Notification clicked: ${title}`),
+                onClick: () => addDefaultNotification({
+                    title,
+                    message: `Notification clicked: ${title}`,
+                }),
             });
         } else if (notiType[0] === 'submit') {
             addSubmitNotification({
@@ -59,21 +62,21 @@ const AddNotification = () => {
 
     return (
         <Container className="flex flex-col gap-10 h-full w-[calc(100dvw-16px)] md:w-fit px-8 no-scrollbar overflow-y-auto relative">
-            <h1 className='text-center text-xl font-bold min-w-64 min-h-20 flex justify-center place-items-center sticky top-0 bg-white dark:bg-darkContainer'>
+            <h1 className='text-center text-xl z-10 font-bold min-w-64 min-h-20 flex justify-center place-items-center sticky top-0 bg-white dark:bg-darkContainer'>
                 Thêm thông báo
             </h1>
             <div className='flex-1 flex flex-col gap-2 justify-center h-full'>
                 <Tooltip
                     placement='top'
                     content={
-                        <Container className='p-2 !rounded-md border'>
+                        <Container className='p-2 !rounded-md border max-w-[calc(100dvw-16px)]'>
                             Chọn loại thông báo:
                             <ul key='noti-types'>
-                                <li key='list'>- Danh sách: số lượng tối đa là 4 (có thế chỉnh sửa trong file .env), có thế lưu thêm hàm onClick để xử lý event.</li>
+                                <li key='list'>- Danh sách: số lượng tối đa là 4 (có thể chỉnh sửa trong file .env), có thể lưu thêm hàm onClick để xử lý event.</li>
                                 <li key='submit'>- Xác nhận: yêu cầu sự đồng ý từ người dùng để thực hiện một chức năng gì đó.</li>
                                 <li key='normal'>- Bình thường: giống như alert</li>
                             </ul>
-                            <p className='font-semibold'>Cách thức thêm thông báo: kiếm tra file /views/addNotifications/index.tsx để xem.</p>
+                            <p className='font-semibold'>Cách thức thêm thông báo: kiếm tra hàm handleAddNotification file /views/addNotifications/index.tsx để xem.</p>
                         </Container>
                     }
                 >
@@ -82,12 +85,12 @@ const AddNotification = () => {
                     </div>
                 </Tooltip>
 
-                <CustomInputField type='text' value={title} setValue={setTitle} label={
+                <CustomInputField type='number' value={title} setValue={setTitle} label={
                     <div className='flex gap-1 place-items-center relative'>
                         Tiêu đề
                         <Tooltip
                             placement='bottom'
-                            content={<Container className='p-2 !rounded-md border'>Thêm tiêu đề cho thông báo, mặc định sẽ là &quot;Thông báo&quot;</Container>}
+                            content={<Container className='p-2 !rounded-md border w-full'>Thêm tiêu đề cho thông báo, mặc định sẽ là &quot;Thông báo&quot;</Container>}
                         >
                             <span><IoInformationCircleOutline className='mt-0.5' /></span>
                         </Tooltip>

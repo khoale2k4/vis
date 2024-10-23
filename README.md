@@ -82,7 +82,11 @@ Alpha_Storage
    ```bash
    npm run dev
 
-Dự án sẽ chạy tại http://localhost:3000.
+Dự án sẽ chạy tại http://localhost:3003.
+
+## Tài liệu chung (Document) cho dự án
+
+**Chuyển sang branch /Document để xem cách sử dụng của các global component, style code**:  
 
 ## Quy định trước khi push branch
 
@@ -94,21 +98,27 @@ Dự án sẽ chạy tại http://localhost:3000.
    ```bash
    npm run build
 
+3. **Nếu có chỉnh sửa global component**:  
+   Hãy chắc chắn rằng không ảnh hưởng đến code cũ đã sử dụng component đó.
+
 Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu merge.
 
 ## Quy định khi push branch
 
-**Không được add file .env.local**:  
+1. **Không được add file .env.local**
+
+2. **Không được dùng --force**
 
 ## Quy định đặt tên branch
 
 1. **Branch với các tính năng mới, hãy đặt tên branch với tiền tố**:  
-   /Feature/
+   /Feature/ + Tên branch (Liên quan đến tính năng)
 
 2. **Branch với mục đích sửa lỗi những tính năng cũ, hãy đặt tên branch với tiền tố**:  
-   /Fix/
+   /Fix/ + Tên branch (Liên quan đến lỗi)
 
 ## Liên hệ
 
-Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với mình qua zalo.
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ qua zalo.
+
 Xin cảm ơn!
