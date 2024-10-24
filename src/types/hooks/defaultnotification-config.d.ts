@@ -9,7 +9,7 @@ declare type DefaultNotificationUtility = {
 };
 
 declare type DefaultNotificationState = {
-    defaultNotification: DefaultNotificationUtility;
+    defaultNotification: DefaultNotificationUtility | undefined;
     openDefaultNotification: boolean;
 };
 

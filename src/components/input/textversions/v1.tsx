@@ -13,10 +13,11 @@ import { FiCalendar, FiEye, FiEyeOff } from "react-icons/fi";
 const TextInputV1 = ({
     value, setValue, state, placeholder, isClearable = false, id, className, type, disabled = false,
 }: TextInputProps) => {
+
+    const InputFieldMessage = useTranslations('InputField');
     const [isClient, setIsClient] = useState<boolean>(false);
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [showCalendar, setShowCalendar] = useState<boolean>(false);
-    const InputFieldMessage = useTranslations('InputField');
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -49,8 +50,8 @@ const TextInputV1 = ({
             if (!parsedDate) {
                 throw new Error('Invalid date format');
             }
-        } catch (error) {
-            throw new Error(`${error}: ${value} \nThe initial date value must either be an empty string or follow the format 'dd/mm/yyyy' (replace d, m, and y with numbers).`);
+        } catch {
+            throw new Error(`Invalid date format: ${value} \nThe initial date value must either be an empty string or follow the format 'dd/mm/yyyy' (replace d, m, and y with numbers).`);
         };
     };
 
@@ -104,20 +105,10 @@ const TextInputV1 = ({
                     />
                 </RenderCase>
 
-                <RenderCase renderIf={isClearable && value && isClient && type !== 'date' && type !== 'password' && type !== 'text-area'}>
-                    <button
-                        type="button"
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500"
-                        onClick={(e) => { e.stopPropagation(); setValue(''); }}
-                    >
-                        <MdClose />
-                    </button>
-                </RenderCase>
-
                 <RenderCase renderIf={type === "password"}>
                     <button
                         onClick={togglePasswordVisibility}
-                        className="absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none text-gray-500"
+                        className="absolute top-1/2 right-2.5 transform -translate-y-1/2 focus:outline-none"
                     >
                         <RenderCase renderIf={showPassword}>
                             <FiEyeOff />
@@ -126,6 +117,16 @@ const TextInputV1 = ({
                         <RenderCase renderIf={!showPassword}>
                             <FiEye />
                         </RenderCase>
+                    </button>
+                </RenderCase>
+
+                <RenderCase renderIf={isClearable && !!value && isClient && type !== 'date' && type !== 'password' && type !== 'text-area'}>
+                    <button
+                        type="button"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2"
+                        onClick={(e) => { e.stopPropagation(); setValue(''); }}
+                    >
+                        <MdClose />
                     </button>
                 </RenderCase>
 
@@ -143,7 +144,7 @@ const TextInputV1 = ({
     return (
         <div className={`relative ${className}`}>
             <Dropdown
-                max_width={true}
+                maxWidth={true}
                 button={triggerButton()}
                 className="top-12 w-full"
                 openWrapper={showCalendar}

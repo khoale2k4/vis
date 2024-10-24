@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const getInitialLocale = (): 'en' | 'vi' => {
+const getInitialLocale = (): 'en' | 'vi' | undefined => {
     const path = typeof window !== 'undefined' ? window.location.pathname : '';
     if (path.startsWith('/en')) { return 'en'; }
     if (path.startsWith('/vi')) { return 'vi'; }

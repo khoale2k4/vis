@@ -8,7 +8,7 @@ declare type InputState = 'error' | 'success' | 'default';
 
 declare type InputTypes = 'select' | 'text' | 'number' | 'password' | 'date' | 'text-area';
 
-declare type BaseInputProps<T extends InputTypes> = {
+declare type BaseInputProps<T extends InputTypes, V extends T extends 'select' ? string[] : string> = {
     type: T;
     version?: T extends 'select' ? SelectInputVersion : TextInputVersion;
 
@@ -21,10 +21,8 @@ declare type BaseInputProps<T extends InputTypes> = {
     isClearable?: boolean;
     disabled?: boolean;
 
-    value: T extends 'select' ? string[] : string;
-    setValue: T extends 'select' ?
-    React.Dispatch<React.SetStateAction<string[]>>
-    : (React.Dispatch<React.SetStateAction<string>> | ((_value: string) => void));
+    value: V;
+    setValue: React.Dispatch<React.SetStateAction<V>> | ((_value: V) => void);
 };
 
 declare type TextInputProps = BaseInputProps<Exclude<InputTypes, 'select'>>;
@@ -34,6 +32,7 @@ declare type SelectInputProps = BaseInputProps<'select'> & {
     messageIfEmptyOptions?: React.ReactNode | string;
     options?: SelectInputOptionFormat[];
     position?: string;
+    dropdownPosition?: DropdownPosition;
 };
 
 declare type SelectInputOptionFormat = {

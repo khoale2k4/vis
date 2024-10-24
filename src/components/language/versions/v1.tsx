@@ -20,7 +20,6 @@ const LanguageSwitcherV1 = ({ handleSwitchLanguage }: LanguageVersionProps) => {
 
     return (
         <Dropdown
-            position="origin-[80%_0%]"
             animation="transition-all duration-300 ease-in-out"
             button={
                 <button onClick={handleClick} className="text-blue-500 uppercase h-5 w-5 border-2
@@ -28,9 +27,9 @@ const LanguageSwitcherV1 = ({ handleSwitchLanguage }: LanguageVersionProps) => {
                     {locale}
                 </button>
             }
-            className={"py-2 top-8 -left-[92px]"}
+            className={"py-2 top-8"}
         >
-            <Container className="flex min-w-32 w-32 !z-50 flex-col justify-start border dark:border-white/10 !rounded-md dark:text-white dark:shadow-none">
+            <Container className="!absolute !-right-4 flex min-w-32 w-32 !z-50 flex-col justify-start border dark:border-white/10 !rounded-md dark:text-white dark:shadow-none">
                 {languages.map(({ label, localeLabel }, index) => (
                     <div key={localeLabel}>
                         <button

@@ -61,11 +61,11 @@ const AddNotification = () => {
     };
 
     return (
-        <Container className="flex flex-col gap-10 h-full w-[calc(100dvw-16px)] md:w-fit px-8 no-scrollbar overflow-y-auto relative">
+        <Container className="flex flex-col h-full w-[calc(100dvw-16px)] md:w-fit px-8 no-scrollbar overflow-y-auto relative">
             <h1 className='text-center text-xl z-10 font-bold min-w-64 min-h-20 flex justify-center place-items-center sticky top-0 bg-white dark:bg-darkContainer'>
                 Thêm thông báo
             </h1>
-            <div className='flex-1 flex flex-col gap-2 justify-center h-full'>
+            <div className='flex-1 flex flex-col gap-2 justify-center h-full pb-4'>
                 <Tooltip
                     placement='top'
                     content={
@@ -125,7 +125,7 @@ const AddNotification = () => {
             </div>
 
             <Container className='sticky bottom-0 w-full !rounded-none !shadow-none'>
-                <CustomButton id='Add_noti_btn' className='mb-8' color={type[0] === 'default' ? 'blue' : type[0]} onClick={handleAddNotification} version='1'>
+                <CustomButton id='Add_noti_btn' className='mb-8 w-full' color={type[0] === 'default' ? 'blue' : type[0]} onClick={handleAddNotification} version='1'>
                     Thêm thông báo
                 </CustomButton>
             </Container>

@@ -98,7 +98,11 @@ Dự án sẽ chạy tại http://localhost:3003.
    ```bash
    npm run build
 
-3. **Nếu có chỉnh sửa global component**:  
+3. **Kiểm tra kiểu TypeScript bằng câu lệnh**:  
+   ```bash
+  tsc --noEmit
+
+4. **Nếu có chỉnh sửa global component**:  
    Hãy chắc chắn rằng không ảnh hưởng đến code cũ đã sử dụng component đó.
 
 Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu merge.

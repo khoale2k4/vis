@@ -1,11 +1,14 @@
+declare type DropdownPosition = 'top' | 'bottom' | 'left' | 'right';
+
 declare type DropdownProps = {
-    max_width?: boolean;
     position?: string;
     className?: string;
     animation?: string;
+    disabled?: boolean;
+    maxWidth?: boolean;
+    openWrapper?: boolean;
     button?: React.ReactNode;
     children?: React.ReactNode;
-    openWrapper?: boolean;
-    disabled?: boolean;
+    dropdownPosition?: DropdownPosition;
     setOpenWrapper?: React.Dispatch<React.SetStateAction<boolean>>;
 };

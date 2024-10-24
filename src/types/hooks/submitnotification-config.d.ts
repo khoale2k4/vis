@@ -10,7 +10,7 @@ declare type SubmitNotificationUtility = {
 };
 
 declare type SubmitNotificationState = {
-    submitNotification: SubmitNotificationUtility;
+    submitNotification: SubmitNotificationUtility | undefined;
     openNotification: boolean;
 };
 

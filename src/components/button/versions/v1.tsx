@@ -5,7 +5,7 @@ const CustomButtonV1 = ({ id, className, color, onClick, children }: ButtonVersi
         <Button
             id={id}
             onClick={onClick}
-            className={`p-2 min-h-10 rounded-md w-full text-white z-0 overflow-clip
+            className={`rounded-md text-white z-0 overflow-clip
                 ${color === "error" ? "bg-red-500 dark:bg-red-600"
                     : color === "blue" ? "bg-blue-500 dark:bg-blue-600"
                         : color === "success" ? "bg-green-500 dark:bg-green-600"
