@@ -116,10 +116,10 @@ Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu
 ## Quy định đặt tên branch
 
 1. **Branch với các tính năng mới, hãy đặt tên branch với tiền tố**:  
-   /Feature/ + Tên branch (Liên quan đến tính năng)
+   Feature/ + Tên branch (Liên quan đến tính năng)
 
 2. **Branch với mục đích sửa lỗi những tính năng cũ, hãy đặt tên branch với tiền tố**:  
-   /Fix/ + Tên branch (Liên quan đến lỗi)
+   Fix/ + Tên branch (Liên quan đến lỗi)
 
 ## Liên hệ
 
