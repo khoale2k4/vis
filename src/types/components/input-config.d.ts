@@ -35,6 +35,14 @@ declare type SelectInputProps = BaseInputProps<'select'> & {
     dropdownPosition?: DropdownPosition;
 };
 
+declare type SelectButtonProps = Pick<
+    SelectInputProps,
+    'className' | 'disabled' | 'state' | 'isClearable' | 'value' | 'setValue' | 'selectedLabel' | 'placeholder' | 'openWrapper'
+> & {
+    defaultSelectPlaceHolder: string;
+    setOpenWrapper: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 declare type SelectInputOptionFormat = {
     label: string;
     value: string;

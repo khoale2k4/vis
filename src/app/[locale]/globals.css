@@ -45,7 +45,7 @@ input:checked.defaultCheckbox::before {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #EF4444;
+  background: #1488DB;
   border-radius: 20px;
 }
 

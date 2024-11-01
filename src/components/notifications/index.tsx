@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Container from '../container';
 import { MdClose } from 'react-icons/md';
