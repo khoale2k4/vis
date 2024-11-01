@@ -12,3 +12,8 @@ declare type DropdownProps = {
     dropdownPosition?: DropdownPosition;
     setOpenWrapper?: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+declare type DropdownPositionState = {
+    top: number | undefined;
+    left: number | undefined;
+}

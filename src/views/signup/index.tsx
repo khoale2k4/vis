@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import SignUpContent from "./content";
@@ -33,7 +33,7 @@ const SignUpButton = () => {
                     <CustomButton
                         onClick={handleButtonClick}
                         className="bg-lightContainer dark:!bg-darkContainer h-fit w-fit flex
-                justify-center py-1 -ml-1.5 rounded-md !px-0 border-2 border-blue-500 text-blue-500">
+                justify-center py-1 -ml-1.5 rounded-md !px-1.5 sm:!px-4 min-w-0 border-2 border-blue-500 text-blue-500">
                         Đăng ký
                     </CustomButton>
                 </div>

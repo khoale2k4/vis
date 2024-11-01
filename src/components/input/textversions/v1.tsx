@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { MdClose } from "react-icons/md";
 import { useTranslations } from "next-intl";
@@ -143,28 +143,34 @@ const TextInputV1 = ({
 
     return (
         <div className={`relative ${className}`}>
-            <Dropdown
-                maxWidth={true}
-                button={triggerButton()}
-                className="top-12 w-full"
-                openWrapper={showCalendar}
-                setOpenWrapper={setShowCalendar}
-                disabled={disabled || type !== "date"}
-            >
-                <RenderCase renderIf={type === "date"}>
-                    <Calendar
-                        showMonthAndYearPickers
-                        onChange={handleDateChange}
-                        value={value && type === "date" ? parseDate(value.split('/').reverse().join('-')) : null}
-                        defaultValue={value && type === "date" ? parseDate(value.split('/').reverse().join('-')) : null}
-                        classNames={{
-                            content: "w-full absolute",
-                            header: "bg-white dark:bg-darkContainerPrimary",
-                            base: "w-full justify-center flex bg-white dark:bg-darkContainerPrimary border dark:border-white/10 !rounded-md shadow-none no-scrollbar relative",
-                        }}
-                    />
-                </RenderCase>
-            </Dropdown>
+            <RenderCase renderIf={type !== "date"}>
+                {triggerButton()}
+            </RenderCase>
+
+            <RenderCase renderIf={type === "date"}>
+                <Dropdown
+                    maxWidth={true}
+                    button={triggerButton()}
+                    className="top-12 w-full"
+                    openWrapper={showCalendar}
+                    setOpenWrapper={setShowCalendar}
+                    disabled={disabled || type !== "date"}
+                >
+                    <RenderCase renderIf={type === "date"}>
+                        <Calendar
+                            showMonthAndYearPickers
+                            onChange={handleDateChange}
+                            value={value && type === "date" ? parseDate(value.split('/').reverse().join('-')) : null}
+                            defaultValue={value && type === "date" ? parseDate(value.split('/').reverse().join('-')) : null}
+                            classNames={{
+                                content: "w-full absolute",
+                                header: "bg-white dark:bg-darkContainerPrimary",
+                                base: "w-full justify-center flex bg-white dark:bg-darkContainerPrimary border dark:border-white/10 !rounded-md shadow-none no-scrollbar relative",
+                            }}
+                        />
+                    </RenderCase>
+                </Dropdown>
+            </RenderCase>
         </div>
     );
 };

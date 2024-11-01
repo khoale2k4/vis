@@ -21,6 +21,7 @@ const LanguageSwitcherV1 = ({ handleSwitchLanguage }: LanguageVersionProps) => {
     return (
         <Dropdown
             animation="transition-all duration-300 ease-in-out"
+            dropdownPosition="bottom"
             button={
                 <button onClick={handleClick} className="text-blue-500 uppercase h-5 w-5 border-2
                 rounded-md flex justify-center place-items-center font-bold text-xs pt-[1px] border-blue-500">

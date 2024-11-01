@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
@@ -43,7 +43,7 @@ const DefaultNotification = () => {
             <motion.div
                 ref={notificationRef}
                 className="relative min-w-full sm:min-w-[300px] sm:max-w-screen
-                max-h-[80vh] xs:max-h-64 bg-white dark:bg-[#242526] rounded-xl p-4 flex flex-col shadow"
+                max-h-[80dvh] bg-white dark:bg-[#242526] rounded-xl p-4 flex flex-col shadow"
                 initial={{ scale: 0 }}
                 animate={{ scale: isVisible ? 1 : 0 }}
                 exit={{ scale: 0 }}

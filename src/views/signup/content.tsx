@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import ExampleSignUpField from "./fields";
@@ -73,7 +73,7 @@ const SignUpContent = () => {
                 { label: "Khách hàng", value: "customer" },
                 { label: "Nhân viên", value: "employee" },
             ],
-            dropdownPosition: 'top',
+            dropdownPosition: 'bottom',
             tooltip_message: "Input có type = select và select_type = single, cần truyền giá trị mặc định và isClearable = false nếu mong muốn luôn có giá trị cho input.",
         },
         {

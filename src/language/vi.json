@@ -12,5 +12,11 @@
         "DefaultSelectNoOptions": "Không có lựa chọn phù hợp",
         "DefaultSelectSearchPlaceHolder": "Tìm kiếm...",
         "DefaultTextPlaceHolder": "Nhập..."
+    },
+    "Table": {
+        "DefaultSearchPlaceHolder": "Tìm...",
+        "DefaultPageMessage": "Vui lòng nhập trang muốn đến",
+        "DefaultSizePerPage": "Hiển thị:",
+        "DefaultNoDataMessage": "Không có dữ liệu"
     }
 }

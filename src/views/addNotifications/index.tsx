@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
 import Tooltip from '@/components/tooltip';
@@ -61,7 +61,7 @@ const AddNotification = () => {
     };
 
     return (
-        <Container className="flex flex-col h-full w-[calc(100dvw-16px)] md:w-fit px-8 no-scrollbar overflow-y-auto relative">
+        <Container className="flex flex-col h-full w-full md:w-fit !rounded-lg px-8 no-scrollbar overflow-y-auto relative">
             <h1 className='text-center text-xl z-10 font-bold min-w-64 min-h-20 flex justify-center place-items-center sticky top-0 bg-white dark:bg-darkContainer'>
                 Thêm thông báo
             </h1>

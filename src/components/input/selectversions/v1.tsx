@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Dropdown from '@/components/dropdown';
 import RenderCase from '@/components/render';
 import Container from '@/components/container';
-import { FaChevronDown } from 'react-icons/fa';
-import React, { useEffect, useState } from 'react';
+import SelectButtonV1 from './components/v1-btn';
 import { removeDiacritics } from '@/utils/removeDiacritics';
 import { MdClose, MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 
@@ -14,7 +14,6 @@ const SelectInputV1 = ({
     placeholder, select_type = 'single', isClearable = true, id, className, disabled = false,
 }: SelectInputProps) => {
     const InputFieldMessage = useTranslations('InputField');
-    const [isClient, setIsClient] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [openWrapper, setOpenWrapper] = useState<boolean>(false);
 
@@ -26,10 +25,6 @@ const SelectInputV1 = ({
         ? options.filter((option: SelectInputOptionFormat) => value.includes(option.value)).map((option: SelectInputOptionFormat) => option.label).join(', ')
         : placeholder;
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
-
     return (
         <div className={`relative`} id={id}>
             <Dropdown
@@ -40,38 +35,19 @@ const SelectInputV1 = ({
                 position={position}
                 dropdownPosition={dropdownPosition}
                 button={
-                    <button
-                        className={`p-2 px-3 text-left border rounded-md w-full dark:bg-darkContainerPrimary
-                        focus:outline-none flex justify-between place-items-center ${className}
-                        ${disabled
-                                ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
-                                : state === 'error'
-                                    ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
-                                    : state === 'success'
-                                        ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
-                                        : 'dark:border-none'}`}
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >
-                        <p className="truncate">{selectedLabel || placeholder || InputFieldMessage('DefaultSelectPlaceHolder')}</p>
-
-                        <RenderCase renderIf={isClearable && value.length > 0 && isClient}>
-                            <button
-                                type="button"
-                                className='-mr-0.5'
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setValue([]);
-                                }}
-                            >
-                                <MdClose />
-                            </button>
-                        </RenderCase>
-
-                        <RenderCase renderIf={!isClearable || value.length === 0}>
-                            <FaChevronDown className={`w-3 h-3 transition-all duration-300 ${openWrapper ? 'rotate-180' : ''}`} />
-                        </RenderCase>
-                    </button>
+                    <SelectButtonV1
+                        className={className}
+                        disabled={disabled}
+                        state={state}
+                        isClearable={isClearable}
+                        value={value}
+                        setValue={setValue}
+                        selectedLabel={selectedLabel}
+                        placeholder={placeholder}
+                        openWrapper={openWrapper}
+                        setOpenWrapper={setOpenWrapper}
+                        defaultSelectPlaceHolder={InputFieldMessage('DefaultSelectPlaceHolder')}
+                    />
                 }
                 className="top-12 w-full"
             >
@@ -131,7 +107,7 @@ const SelectInputV1 = ({
                                     </button>
 
                                     <RenderCase renderIf={index < filteredOptions.length - 1}>
-                                        <div className="h-px w-full bg-gray-200 dark:bg-white/10" />
+                                        <div className="h-[0.5px] w-full bg-gray-200 dark:bg-white/10" />
                                     </RenderCase>
                                 </div>
                             ))}

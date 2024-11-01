@@ -7,7 +7,7 @@ import LanguageSwitcher from '@/components/language';
 
 const Navbar = () => {
     return (
-        <nav className="p-2 fixed w-full h-16 top-0">
+        <nav className="p-2 fixed w-full h-16 top-0 z-20">
             <Container className="px-4 flex justify-between items-center w-full border dark:border-none !rounded-md h-full z-10">
                 <div className="flex w-1/3">
                     <SignUpButton />
@@ -16,7 +16,7 @@ const Navbar = () => {
                     <div className="text-black dark:text-white text-xl font-semibold">Alpha</div>
                     <div className="text-blue-500 text-xl font-semibold">Storage</div>
                 </div>
-                <div className='flex w-1/3 gap-4 justify-end'>
+                <div className='flex w-1/3 gap-2 sm:gap-4 justify-end'>
                     <Tooltip
                         placement='bottom'
                         content={<Container className='p-2 !rounded-md border'>Đổi theme</Container>}
