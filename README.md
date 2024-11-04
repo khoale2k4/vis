@@ -100,7 +100,7 @@ Dự án sẽ chạy tại http://localhost:3003.
 
 3. **Kiểm tra kiểu TypeScript bằng câu lệnh**:  
    ```bash
-  tsc --noEmit
+   tsc --noEmit
 
 4. **Nếu có chỉnh sửa global component**:  
    Hãy chắc chắn rằng không ảnh hưởng đến code cũ đã sử dụng component đó.
