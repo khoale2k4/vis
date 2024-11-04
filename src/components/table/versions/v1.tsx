@@ -136,7 +136,7 @@ const CheckTableV1 = <T extends TableData>(props: TableProps<T>) => {
     return (
         <Container className={`h-full w-full flex flex-col gap-3 ${containerClassname}`}>
             <div className="flex justify-between items-center flex-col lg:flex-row">
-                <div className={`relative flex items-center bg-lightPrimary rounded-full text-navy-700 
+                <div className={`relative flex items-center bg-lightContainerPrimary rounded-full text-navy-700 
                     dark:bg-darkContainerPrimary dark:text-white w-full ${!!customButton ? 'lg:mr-4 mb-3 lg:mb-0' : ''}`}>
                     <motion.button
                         className="text lg h-10 w-8 px-2 ml-2 flex justify-center rounded-full place-items-center"
@@ -155,7 +155,7 @@ const CheckTableV1 = <T extends TableData>(props: TableProps<T>) => {
                         }}
                         type="text"
                         placeholder={TableMessage('DefaultSearchPlaceHolder')}
-                        className="block h-full w-full rounded-full bg-lightPrimary text-sm font-medium text-navy-800 dark:text-white
+                        className="block h-full w-full rounded-full bg-lightContainerPrimary text-sm font-medium text-navy-800 dark:text-white
                         placeholder:text-navy-800 placeholder:dark:text-gray-300 outline-none dark:bg-darkContainerPrimary pl-1 pr-3"
                     />
                 </div>
@@ -257,7 +257,7 @@ const CheckTableV1 = <T extends TableData>(props: TableProps<T>) => {
                 </RenderCase>
 
                 <div className={`w-full flex place-items-center ${setPageSize ? "justify-between" : " justify-center"}`}>
-                    <div className="gap-2 justify-center place-items-center flex h-10 bg-lightPrimary dark:bg-darkContainerPrimary rounded-full px-1">
+                    <div className="gap-2 justify-center place-items-center flex h-10 bg-lightContainerPrimary dark:bg-darkContainerPrimary rounded-full px-1">
                         <button className={`flex items-center text-md hover:cursor-pointer bg-lightContainer p-1 text-navy-800 dark:text-white border h-8 w-8
                         border-gray-200 dark:!border-none hover:bg-gray-100 dark:bg-darkContainer dark:hover:bg-white/20 dark:active:bg-white/10
                         linear justify-center rounded-full font-bold transition duration-200`}
@@ -269,7 +269,7 @@ const CheckTableV1 = <T extends TableData>(props: TableProps<T>) => {
                             type="string"
                             value={currentPage}
                             onChange={handlePageInputChange}
-                            className="w-16 h-8 text-center focus:outline-none font-semibold dark:bg-darkContainerPrimary bg-lightPrimary dark:text-white flex items-center rounded-full"
+                            className="w-16 h-8 text-center focus:outline-none font-semibold dark:bg-darkContainerPrimary bg-lightContainerPrimary dark:text-white flex items-center rounded-full"
                         />
 
                         <button className={`flex items-center text-md hover:cursor-pointer bg-lightContainer p-1 text-navy-800 dark:text-white border h-8 w-8
@@ -286,7 +286,7 @@ const CheckTableV1 = <T extends TableData>(props: TableProps<T>) => {
                             animation="transition-all duration-300 ease-in-out"
                             dropdownPosition="top"
                             button={
-                                <button className={`col-span-1 w-full lg:w-fit flex items-center text-md hover:cursor-pointer bg-lightPrimary p-2 hover:bg-gray-100 dark:bg-[#3A3B3C] dark:hover:bg-white/20 dark:active:bg-white/10
+                                <button className={`col-span-1 w-full lg:w-fit flex items-center text-md hover:cursor-pointer bg-lightContainerPrimary p-2 hover:bg-gray-100 dark:bg-[#3A3B3C] dark:hover:bg-white/20 dark:active:bg-white/10
                                     linear justify-center rounded-lg font-medium dark:font-base transition duration-200`}>
                                     {TableMessage('DefaultSizePerPage')} {currentSize}
                                 </button>
