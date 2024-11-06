@@ -1,0 +1,22 @@
+{
+    "Login": {
+        "Login": "Login"
+    },
+    "Notification": {
+        "DefaultTitle": "Notification",
+        "DefaultCloseButton": "Close",
+        "DefaultSubmitButton": "Submit"
+    },
+    "InputField": {
+        "DefaultSelectPlaceHolder": "Select...",
+        "DefaultSelectNoOptions": "No available options",
+        "DefaultSelectSearchPlaceHolder": "Search...",
+        "DefaultTextPlaceHolder": "Enter..."
+    },
+    "Table": {
+        "DefaultSearchPlaceHolder": "Search...",
+        "DefaultPageMessage": "Please enter the page number",
+        "DefaultSizePerPage": "Show:",
+        "DefaultNoDataMessage": "No data available"
+    }
+}
