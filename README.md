@@ -121,6 +121,16 @@ Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu
 2. **Branch với mục đích sửa lỗi những tính năng cũ, hãy đặt tên branch với tiền tố**:  
    Fix/ + Tên branch (Liên quan đến lỗi)
 
+## Quy định khi add commit
+
+1. Không được add . mà chỉ được add những file bản thân đã chỉnh sửa
+
+2. Commit với message sau: git commit -m "File đã thêm"
+
+## Document về animation
+
+Anh em preview trước và học cách sử dụng ở trên trang web https://animation.ibelick.com
+
 ## Liên hệ
 
 Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ qua zalo.
