@@ -29,7 +29,7 @@ export default function RegisterForm() {
         });
 	return (
         <form
-        className="animate-appear_right_smooth w-2/3 mt-8 text-black  flex flex-col items-center"
+        className="h-full animate-appear_right_smooth w-full text-black  flex flex-col items-center"
         action=""
         method="POST"
         onSubmit={() => {}}
@@ -184,8 +184,8 @@ export default function RegisterForm() {
                         className="text-center w-full text-sm place-items-end"
                         >
                                 {"Already have account? "}
-                                <span 
-                                onClick={()=>{dispatch(setShowLogin())}}
+                                <span
+                                onClick={() => {dispatch(setShowLogin());}}
                                 className="underline cursor-pointer text-darkblue-400">
                                         {"Login now"}
                                 </span>

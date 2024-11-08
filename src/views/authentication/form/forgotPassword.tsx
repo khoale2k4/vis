@@ -1,10 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useDispatch} from 'react-redux';
-import { setShowLogin} from '@/store/action/authenPageSlice';
+import { useDispatch } from 'react-redux';
+import { setShowLogin } from '@/store/action/authenPageSlice';
+import Typewriter from "@/components/effect/TextGenerateEffect";
 interface ResetPassInfo {
     email: string;
 }
@@ -18,8 +18,7 @@ export function ResetForm() {
 		   setType('password');
 		}
 	 };
-    const router = useRouter();
-    const [error, setError] = useState<string | null>(null);
+    // const router = useRouter();
     const [ResetPassInfo, setResetPassInfo] = useState<ResetPassInfo>({
         email: "",
     });
@@ -30,7 +29,6 @@ export function ResetForm() {
     const [passCheck, setPassCheck]=useState("");
     const [seconds, setSeconds] = useState(60);
     const [isStarted, setIsStarted] =useState(false);
-	const t= useTranslations("LogPage");
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -68,17 +66,17 @@ export function ResetForm() {
         // console.log(verifyPayload)
 		// setShowResetPass(true)
 		e.preventDefault();
-        setShowResetPass(true)
+        setShowResetPass(true);
     };
     return (
-		<div className=" w-2/3 mt-8 text-black  flex flex-col items-center">
+		<div className="h-full w-full text-black  flex flex-col items-center">
 			<form
 				className={`w-full  z-50 top-0 left-0 ${!show ? "animate-appear_right_smooth" : "animate-disappear_left_smooth hidden"} w-full bg-white text-black flex flex-col gap-5 items-center`}
 				action=""
 				method="POST"
 				onSubmit={handleSubmit}>
 				<span className="text-xl font-semibold  text-center">
-					Let us know your email
+					<Typewriter text="Let us know your email" delay={50} />
 				</span>
 
 				<div className="relative w-full">
@@ -105,23 +103,26 @@ export function ResetForm() {
 							Email
 					</label>
                 </div>
-
-				<button
-					type="submit"
-                    className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
-                >
-                        Send otp
-                </button>
-				<button
+				<div
+				className="w-full flex gap-5">
+					<button
 					onClick={() => {
 						// setShow(!show);
 						// setShowback(false)
-						dispatch(setShowLogin())
+						dispatch(setShowLogin());
 					}}
-                    className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
-                >
-                        Get back to login
-                </button>
+					className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
+					>
+							Get back
+					</button>
+					<button
+						type="submit"
+						className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
+					>
+							Send otp
+					</button>
+
+				</div>
 			</form>
 
 			<form
@@ -194,7 +195,7 @@ export function ResetForm() {
 								placeholder=""
 								className=" peer w-full placeholder-transparent focus:outline-none focus:border-sky-700"
 								onChange={(e) => {
-									setPass(e.target.value)
+									setPass(e.target.value);
 								}}
 								required
 						/>
@@ -244,7 +245,7 @@ export function ResetForm() {
 						</div>
 					</div>
 				</div>
-				
+
 				<button
 					type="submit"
                     className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
@@ -255,9 +256,9 @@ export function ResetForm() {
 				onClick={() => {
 					// setShow(!show);
 					// setShowback(false)
-					dispatch(setShowLogin())
+					dispatch(setShowLogin());
 				}}
-				className="bg-darkblue-500 active:scale-x-105 duration-150 cursor-pointer text-center text-white text-lg w-full h-12 rounded-lg"	
+				className="bg-darkblue-500 active:scale-x-105 duration-150 cursor-pointer text-center text-white text-lg w-full h-12 rounded-lg"
 				>
 					Get back to login
 				</button>

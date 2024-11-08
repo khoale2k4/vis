@@ -1,10 +1,10 @@
-"use client"
-import { usePathname, useRouter } from 'next/navigation';
+"use client";
+import { usePathname } from 'next/navigation';
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react';
 interface SessionContextType {
     status: 'loading' | 'authenticated' | 'unauthenticated';
-    session: null | any; 
-    setSession: Dispatch<SetStateAction<null | any>>; 
+    session: null | any;
+    setSession: Dispatch<SetStateAction<null | any>>;
 }
 const SessionContext = createContext<SessionContextType>({
     status: 'loading', // Có thể là 'loading', 'authenticated', 'unauthenticated'
@@ -14,12 +14,12 @@ const SessionContext = createContext<SessionContextType>({
 export function SessionProvider({ children }: { children: ReactNode }) {
     const [status, setStatus] = useState<'loading' | 'authenticated' | 'unauthenticated'>("loading");
     const [session, setSession] = useState(null);
-    const pathName = usePathname()
-    const router =useRouter();
-    
+    const pathName = usePathname();
+    // const router =useRouter();
+
     useEffect(() => {
         const fetchData = async () => {
-            
+
             //somelogic
             setSession(session);
             setStatus('authenticated');
@@ -27,7 +27,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         fetchData();
     }, [pathName]);
     useEffect(() => {
-    
+
             const intervalId = setInterval(() => {
                 //refreshToken here
             }, 15 * 60 * 1000 ); // 15 phút = 15 * 60 * 1000 milliseconds refreshToken 1 lần

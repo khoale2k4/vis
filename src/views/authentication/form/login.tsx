@@ -23,7 +23,7 @@ export default function LoginForm() {
         });
 	return (
         <form
-        className="animate-appear_right_smooth w-2/3 mt-8 text-black  flex flex-col items-center"
+        className="h-full animate-appear_right_smooth w-full text-black  flex flex-col items-center"
         action=""
         method="POST"
         onSubmit={() => {}}
@@ -93,8 +93,8 @@ export default function LoginForm() {
 
                         {/* <p className="text-red-500 fixed mt-2 text-xxs sm:text-sm">{formErrors.phoneNumberEr}</p> */}
                         </div>
-                        <div 
-                        onClick={()=>{dispatch(setShowReset())}}
+                        <div
+                        onClick={() => {dispatch(setShowReset());}}
                         className="text-right cursor-pointer w-full underline text-darkblue-400 text-sm place-items-end">
                                 Forgot password?
                         </div>
@@ -110,7 +110,7 @@ export default function LoginForm() {
                         >
                                 {"Don't have account? "}
                                 <span
-                                onClick={()=>{dispatch(setShowRegister())}}
+                                onClick={() => {dispatch(setShowRegister());}}
                                 className="underline text-darkblue-400 cursor-pointer">
                                         {"Register now"}
                                 </span>
