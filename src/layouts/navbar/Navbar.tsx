@@ -1,33 +1,9 @@
 import Link from "next/link";
 import NavbarButton from "./NavbarButton";
 
-type NavigationItemType = {
-  name: string;
-  link: string;
-};
-
-const NavigationItem: NavigationItemType[] = [
-  {
-    name: "Products",
-    link: "#",
-  },
-  {
-    name: "Solutions",
-    link: "#",
-  },
-  {
-    name: "Our team",
-    link: "#",
-  },
-  {
-    name: "Pricing",
-    link: "#",
-  },
-];
-
 export default function Navbar() {
   return ( 
-    <div className="fixed top-0 left-0 flex flex-row items-center justify-start w-full h-20 gap-12 px-12 bg-darkblue-500 sm-max:px-4 sm-max:py-4">
+    <div className="fixed top-0 left-0 flex items-center w-full gap-12 px-12 py-4 bg-darkblue-500 sm-max:px-4 sm-max:py-4">
       <div className="flex items-center gap-4 h-fit w-fit">
         <div className="bg-white rounded-full size-12 brand_icon"></div>
         <span className="text-2xl font-bold text-white md-max:text-lg">
@@ -51,3 +27,27 @@ export default function Navbar() {
     </div>
   );
 }
+
+type NavigationItemType = {
+  name: string;
+  link: string;
+};
+
+const NavigationItem: NavigationItemType[] = [
+  {
+    name: "Products",
+    link: "#",
+  },
+  {
+    name: "Solutions",
+    link: "#",
+  },
+  {
+    name: "Our team",
+    link: "#",
+  },
+  {
+    name: "Pricing",
+    link: "#",
+  },
+];
