@@ -29,24 +29,24 @@ export default function Navbar() {
   return ( 
     <div className="fixed top-0 left-0 flex flex-row items-center justify-start w-full h-20 gap-12 px-12 bg-darkblue-500 sm-max:px-4 sm-max:py-4">
       <div className="flex items-center gap-4 h-fit w-fit">
-        <div className="rounded-full size-12 brand_icon bg-white-50"></div>
-        <span className="text-2xl font-bold md-max:text-lg text-white-50">
+        <div className="bg-white rounded-full size-12 brand_icon"></div>
+        <span className="text-2xl font-bold text-white md-max:text-lg">
           VIStorage
         </span>
       </div>
-      <div className="flex gap-12 h-fit w-fit 2xl-max:hidden">
+      <div className="flex gap-12 h-fit w-fit lg-max:hidden">
         {NavigationItem.map((item: NavigationItemType, index: number) => (
           <Link
             href={item.link}
             key={index}
-            className="text-md text-white-50 hover:underline hover:underline-offset-4">
+            className="text-white text-md hover:underline hover:underline-offset-4">
             {item.name}
           </Link>
         ))}
       </div>
       <div className="flex items-center justify-center gap-4 ml-auto w-fit h-fit ">
-				<NavbarButton name="Sign in" link="#" className="text-white-50 bg-darkblue-500 hover:bg-darkblue-600"/>
-				<NavbarButton name="Sign up" link="#" className="text-darkblue-500 bg-white-50 hover:bg-white-300"/>
+				<NavbarButton name="Sign in" link="#" className="text-white bg-darkblue-500 hover:bg-darkblue-600"/>
+				<NavbarButton name="Sign up" link="#" className="bg-white text-darkblue-500 hover:bg-white-300"/>
       </div>
     </div>
   );

@@ -1,41 +1,17 @@
 import Link from "next/link"
+import FooterItem from "./FooterItem"
 
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-start justify-between min-w-full px-8 py-10 mt-auto gap-x-48 gap-y-20 2xl:flex-row md:px-16 lg:px-28 xl:px-32 text-white-50 bg-darkblue-900">
+    <div className="flex flex-col items-start justify-between min-w-full px-8 py-10 mt-auto text-white gap-x-48 gap-y-20 2xl:flex-row md:px-16 lg:px-28 xl:px-32 bg-darkblue-900">
       <div className="flex flex-col w-full gap-10 xl:w-fit h-fit">
         <div className="grid w-full grid-cols-2 gap-16 sm:grid-cols-3 md:grid-cols-4 h-fit xl:flex xl:flex-row">
-          <div className="flex flex-col gap-2.5 min-w-fit">
-            <span className="text-xl font-bold">VIStorage</span>
-            {VIStorage.map((item, index) => (
-              <Link key={index} href={item.link} className="text-sm hover:underline hover:underline-offset-4">{item.name}</Link>
-            ))}
-          </div>          
-          <div className="flex flex-col gap-2.5 min-w-fit">
-            <span className="text-xl font-bold">Products</span>
-            {Products.map((item, index) => (
-              <Link key={index} href={item.link} className="text-sm hover:underline hover:underline-offset-4">{item.name}</Link>
-            ))}
-          </div>          
-          <div className="flex flex-col gap-2.5 min-w-fit">
-            <span className="text-xl font-bold">Features</span>
-            {Features.map((item, index) => (
-              <Link key={index} href={item.link} className="text-sm hover:underline hover:underline-offset-4">{item.name}</Link>
-            ))}
-          </div>          
-          <div className="flex flex-col gap-2.5 min-w-fit">
-            <span className="text-xl font-bold">Support</span>
-            {Support.map((item, index) => (
-              <Link key={index} href={item.link} className="text-sm hover:underline hover:underline-offset-4">{item.name}</Link>
-            ))}
-          </div>          
-          <div className="flex flex-col gap-2.5 min-w-fit">
-            <span className="text-xl font-bold">Legal</span>
-            {Legal.map((item, index) => (
-              <Link key={index} href={item.link} className="text-sm hover:underline hover:underline-offset-4">{item.name}</Link>
-            ))}
-          </div>          
+          <FooterItem name="VIStorage" items={VIStorage} />          
+          <FooterItem name="Products" items={Products} />
+          <FooterItem name="Features" items={Features} />
+          <FooterItem name="Support" items={Support} />
+          <FooterItem name="Legal" items={Legal} />        
         </div>
         <div className="flex flex-col gap-4">
             <span className="text-xl font-bold">Media</span>
@@ -50,7 +26,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-center flex-grow w-full h-full gap-4">
         <div className="rounded-full size-28 bg-darkblue-500" />
         <span className="text-xl font-bold">VIStorage</span>
-        <div className="h-0 border w-60 border-white-50" />
+        <div className="h-0 border border-white w-60" />
         <span className="flex flex-col items-center justify-center text-sm">
           <span>Copyright ©2024 VietName Innovation Solution.</span>
           <span>All Rights Reserved.</span>
