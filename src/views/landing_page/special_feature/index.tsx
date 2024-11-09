@@ -1,3 +1,5 @@
-export default function SpecialFeature() {
-  return <div className="w-full px-8 h-fit md:px-16 lg:px-28 xl:px-32"></div>;
-}
+import Feature1 from "./feature1";
+import Feature2 from "./feature2";
+import Feature3 from "./feature3";
+
+export { Feature1, Feature2, Feature3 };
