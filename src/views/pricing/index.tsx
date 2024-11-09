@@ -1,7 +1,7 @@
 import React from "react";
 import PricingCard from "./componets/PricingCard";
 
-export default function Page() {
+export default function PricingContent() {
     return (
         <div className="flex flex-col items-center h-[1000px] md:flex-col">
             <div className="flex flex-col items-center">
