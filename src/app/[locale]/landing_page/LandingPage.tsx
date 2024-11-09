@@ -4,7 +4,7 @@ import HeroSection from "@/views/landing_page/hero_section";
 import {
   Feature1,
   Feature2,
-  Feature3,
+  Feature3
 } from "@/views/landing_page/special_feature";
 
 export default function LandingPage() {

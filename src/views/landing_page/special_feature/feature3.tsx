@@ -6,7 +6,7 @@ export default function Feature3() {
       <div className="w-full lg:w-1/2 bg-neutral-50 h-80" />
       <div className="flex flex-col w-full gap-4 lg:w-1/2">
         <h1 className="text-2xl font-bold lg:text-3xl">Special Feature 3</h1>
-        <span className="text-md lg:text-lg font-medium">
+        <span className="font-medium text-md lg:text-lg">
           Description: Lorem ipsum odor amet, consectetuer adipiscing elit.
           Dignissim hendrerit vel magnis turpis tellus sit. Quisque euismod
           montes blandit magnis id, velit augue? Adipiscing fermentum placerat
