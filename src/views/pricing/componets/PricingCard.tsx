@@ -47,7 +47,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     <p className="text-darkblue-500 font-semibold text-[45px] pt-4 group-hover:text-white after:content-['/year'] after:font-thin after:text-base after:pl-1">{price}</p>
                 </strong>
                 <p className="text-darkblue-500 font-normal text-[17px] pt-0 pb-9 group-hover:text-white">{period}</p>
-                <CustomButtonV1 id={buttonId} color={buttonColor} className="w-[82%] bg-[#162B60] group-hover:bg-success-500">
+                <CustomButtonV1 id={buttonId} color={buttonColor} className="w-[85%] bg-[#162B60] group-hover:bg-success-500">
                     {buttonText}
                 </CustomButtonV1>
                 <div className="pt-9">
@@ -55,7 +55,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                         {features.map((feature, index) => (
                             <li key={index} className="flex flex-row items-center pt-3">
                                 <Image src="/check-circle-1.webp" alt="check-icon" width={22} height={22}/>
-                                <p className="text-darkblue-500 font-normal text-[18px] pl-2 group-hover:text-white">{feature}</p>
+                                <p className="text-darkblue-500 font-normal text-[18px] pl-2 group-hover:text-white w-[85%] truncate overflow-hidden text-ellipsis whitespace-nowrap">{feature}</p>
                             </li>
                         ))}
                     </ul>

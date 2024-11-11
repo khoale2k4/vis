@@ -5,10 +5,10 @@ export default function PricingContent() {
     return (
         <div className="flex flex-col items-center h-[1000px] md:flex-col">
             <div className="flex flex-col items-center">
-                <h2 className="font-bold md:text-7xl text-4xl text-darkblue-500">The Price</h2>
+                <h2 className="font-bold text-4xl text-darkblue-500 md:text-5xl lg:text-6xl 2xl:text-7xl">The Price</h2>
                 <p className="font-normal text-2xl text-darkblue-500">Is no more of a problem</p>
             </div>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-5 md:grid-cols-4 pt-10 ">
+            <div className="grid grid-cols-1 gap-x-4 gap-y-5 pt-10 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
                 <PricingCard
                     title="Migrations"
                     subtitle="Starting at"
