@@ -1,5 +1,5 @@
-import Navbar from "@/layouts/publicLayout/navbar";
-import Footer from "@/layouts/publicLayout/footer";
+import Navbar from "@/layouts/public_layout/navbar";
+import Footer from "@/layouts/public_layout/footer";
 import HeroSection from "@/views/landing_page/hero_section";
 import {
   Feature1,
@@ -10,7 +10,7 @@ import SlideInView from "@/components/effect/slideInView";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col w-full gap-20 overflow-x-hidden min-h-dvh">
+    <div className="flex flex-col w-full gap-40 overflow-x-hidden min-h-dvh">
       <Navbar />
       <HeroSection />
       <div className="flex flex-col gap-60 xl:gap-60">
