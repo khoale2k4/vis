@@ -1,5 +1,5 @@
 import Link from "next/link";
-import FooterItem from "./FooterItem";
+import FooterItem from "./footer_item";
 
 export default function Footer() {
   return (
