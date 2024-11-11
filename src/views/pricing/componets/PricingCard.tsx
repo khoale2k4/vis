@@ -40,7 +40,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 }) => {
     return (
         <div>
-            <div className="border-solid border-1 w-[314px] h-[600px] rounded-2xl pt-5 pl-10 pb-5 group hover:bg-darkblue-500 hover:border-none hover-transition-background duration-300 hover:shadow-xl hover:shadow-blue-500/30">
+            <div className="border-solid border-1 w-[314px] h-[620px] rounded-2xl pt-6 pl-10 pb-5 group hover:bg-darkblue-500 hover:border-none hover-transition-background duration-300 hover:shadow-xl hover:shadow-blue-500/30">
                 <p className="text-darkblue-500 font-bold text-2xl group-hover:text-white">{title}</p>
                 <p className="text-neutral-80 font-thin text-base">{subtitle}</p>
                 <strong className="">
@@ -55,7 +55,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                         {features.map((feature, index) => (
                             <li key={index} className="flex flex-row items-center pt-3">
                                 <Image src="/check-circle-1.webp" alt="check-icon" width={22} height={22}/>
-                                <p className="text-darkblue-500 font-normal text-[18px] pl-2 group-hover:text-white w-[85%] truncate overflow-hidden text-ellipsis whitespace-nowrap">{feature}</p>
+                                <p className="text-darkblue-500 font-normal text-[18px] pl-2 group-hover:text-white w-[85%] break-words">{feature}</p>
                             </li>
                         ))}
                     </ul>

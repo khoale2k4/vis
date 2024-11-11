@@ -1,14 +1,20 @@
 import React from "react";
-import PricingCard from "./componets/PricingCard";
+import PricingCard from "./componets/pricingCard";
+import Image from "next/image";
+
+// layout_pricing.webp
+// check-circle-1.webp pointer-events-none
 
 export default function PricingContent() {
     return (
-        <div className="flex flex-col items-center h-[1000px] md:flex-col">
+        <div className="flex flex-col items-center h-[1000px]">
             <div className="flex flex-col items-center">
                 <h2 className="font-bold text-4xl text-darkblue-500 md:text-5xl lg:text-6xl 2xl:text-7xl">The Price</h2>
                 <p className="font-normal text-2xl text-darkblue-500">Is no more of a problem</p>
             </div>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-5 pt-10 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-4 gap-y-5 pt-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 relative">
+                <Image src={'/layout_pricing.webp'} alt="layout" width={200} height={400} className="absolute top-[108px] left-[456px] pointer-events-none hidden 2xl:block"/>
+                <Image src={'/layout_pricing.webp'} alt="layout" width={200} height={400} className="absolute top-[26px] left-[660px] rotate-180 pointer-events-none hidden 2xl:block"/>
                 <PricingCard
                     title="Migrations"
                     subtitle="Starting at"
