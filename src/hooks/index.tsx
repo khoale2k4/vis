@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { NotificationsProvider } from "./NotificationsProvider";
 import { SubmitNotificationProvider } from "./SubmitNotificationProvider";
 import { DefaultNotificationProvider } from "./DefaultNotificationProvider";
+import { ScreenViewProvider } from "./ScreenViewProvider";
 import { SessionProvider } from "./SessionProvider";
 
 export default function ProviderWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -14,9 +15,11 @@ export default function ProviderWrapper({ children }: Readonly<{ children: React
             <NotificationsProvider>
                 <SubmitNotificationProvider>
                     <DefaultNotificationProvider>
-                        <SessionProvider>
+                        <ScreenViewProvider>
+                            <SessionProvider>
                             {children}
-                        </SessionProvider>
+                            </SessionProvider>
+                        </ScreenViewProvider>
                     </DefaultNotificationProvider>
                 </SubmitNotificationProvider>
             </NotificationsProvider>
