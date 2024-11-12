@@ -1,7 +1,5 @@
-export default function Home() {
+import LandingPage from "./landing_page";
 
-  return (
-    <div className="flex justify-center place-items-center h-full w-full">
-    </div>
-  );
-};
+export default function Home() {
+  return <LandingPage />;
+}
