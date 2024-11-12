@@ -21,11 +21,13 @@ export default function PublicNavbar() {
       maxWidth="full"
       className="fixed top-0 z-50 flex py-2 bg-darkblue-500"
       onMenuOpenChange={setIsMenuOpen}>
-      <NavbarBrand className="flex gap-2 lg:gap-4">
-        <div className="bg-white rounded-full size-8 lg:size-12 brand_icon"></div>
-        <span className="text-lg font-bold text-white lg:text-2xl">
-          VIStorage
-        </span>
+      <NavbarBrand>
+        <Link href="/" className="flex gap-2 lg:gap-4 justify-center place-items-center">
+          <div className="bg-white rounded-full size-8 lg:size-12 brand_icon"></div>
+          <span className="text-lg font-bold text-white lg:text-2xl">
+            VIStorage
+          </span>
+        </Link>
       </NavbarBrand>
       <NavbarContent className="hidden gap-12 lg:flex" justify="center">
         {NavigationItem.map((item: NavigationItemType, index: number) => (
@@ -120,6 +122,6 @@ const NavigationItem: NavigationItemType[] = [
   },
   {
     name: "Pricing",
-    link: "#",
+    link: "/pricing",
   },
 ];

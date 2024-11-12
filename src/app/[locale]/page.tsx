@@ -1,6 +1,5 @@
 import React from "react";
-
-export default function Home() {
+import LandingPage from "@/views/landingPage";
 
 export default function Home() {
   return <LandingPage />;

@@ -3,7 +3,7 @@ import FooterItem from "./footer_item";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-start justify-between min-w-full px-8 py-10 mt-40 text-white gap-x-48 gap-y-20 2xl:flex-row md:px-16 lg:px-28 xl:px-32 bg-darkblue-900">
+    <div className="flex flex-col items-start justify-between min-w-full px-8 py-10 text-white gap-x-48 gap-y-20 2xl:flex-row md:px-16 lg:px-28 xl:px-32 bg-darkblue-900">
       <div className="flex flex-col w-full gap-10 xl:w-fit h-fit">
         <div className="grid w-full grid-cols-2 gap-16 sm:grid-cols-3 md:grid-cols-4 h-fit xl:flex xl:flex-row">
           <FooterItem name="VIStorage" items={VIStorage} />
