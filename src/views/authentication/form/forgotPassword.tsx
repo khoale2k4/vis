@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { setShowLogin } from '@/store/action/authenPageSlice';
-import Typewriter from "@/components/effect/TextGenerateEffect";
+import Typewriter from "@/components/effect/textGenerateEffect";
 interface ResetPassInfo {
     email: string;
 }
@@ -66,7 +66,7 @@ export function ResetForm() {
         // console.log(verifyPayload)
 		// setShowResetPass(true)
 		e.preventDefault();
-        setShowResetPass(true);
+        setShowResetPass(true)
     };
     return (
 		<div className="h-full w-full text-black  flex flex-col items-center">
@@ -109,7 +109,7 @@ export function ResetForm() {
 					onClick={() => {
 						// setShow(!show);
 						// setShowback(false)
-						dispatch(setShowLogin());
+						dispatch(setShowLogin())
 					}}
 					className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
 					>
@@ -121,7 +121,7 @@ export function ResetForm() {
 					>
 							Send otp
 					</button>
-
+				
 				</div>
 			</form>
 
@@ -195,7 +195,7 @@ export function ResetForm() {
 								placeholder=""
 								className=" peer w-full placeholder-transparent focus:outline-none focus:border-sky-700"
 								onChange={(e) => {
-									setPass(e.target.value);
+									setPass(e.target.value)
 								}}
 								required
 						/>
@@ -220,15 +220,15 @@ export function ResetForm() {
 							className="h-12 px-5 flex items-center w-full rounded-lg border-1 bg-transparent  border-black text-black"
 							>
 						<input
-								name="verifypass"
-								id="verifypass"
-								type={type}
-								placeholder=""
-								className=" peer w-full placeholder-transparent focus:outline-none focus:border-sky-700"
-								onChange={(e) => {
-									setPassCheck(e.target.value);
-								}}
-								required
+							name="verifypass"
+							id="verifypass"
+							type={type}
+							placeholder=""
+							className=" peer w-full placeholder-transparent focus:outline-none focus:border-sky-700"
+							onChange={(e) => {
+								setPassCheck(e.target.value);
+							}}
+							required
 						/>
 								{type === "text" ?
 								<FaEye
@@ -238,27 +238,27 @@ export function ResetForm() {
 								className="text-black cursor-pointer"
 								onClick={handleToggle} size={20}/>}
 								<label
-								htmlFor="verifypass"
-								className="absolute rounded-full px-2 tracking-wide left-2 -top-2.5 text-black text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 bg-white peer-focus:text-black peer-focus:text-sm">
-								{"Verify your password"}
+									htmlFor="verifypass"
+									className="absolute rounded-full px-2 tracking-wide left-2 -top-2.5 text-black text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 bg-white peer-focus:text-black peer-focus:text-sm">
+									{"Verify your password"}
 						</label>
 						</div>
 					</div>
 				</div>
-
+				
 				<button
 					type="submit"
                     className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
                 >
-                        Confirm
+                	Confirm
                 </button>
 				<button
 				onClick={() => {
 					// setShow(!show);
 					// setShowback(false)
-					dispatch(setShowLogin());
+					dispatch(setShowLogin())
 				}}
-				className="bg-darkblue-500 active:scale-x-105 duration-150 cursor-pointer text-center text-white text-lg w-full h-12 rounded-lg"
+				className="bg-darkblue-500 active:scale-x-105 duration-150 cursor-pointer text-center text-white text-lg w-full h-12 rounded-lg"	
 				>
 					Get back to login
 				</button>

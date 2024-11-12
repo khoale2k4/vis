@@ -1,10 +1,10 @@
-'use client';
+'use client'
 import React, { useState, useEffect } from 'react';
 
 interface TypewriterProps {
   text: string;
-  delay: number;
-  infinite?: boolean;
+  delay: number; 
+  infinite?: boolean;  
 }
 
 const Typewriter: React.FC<TypewriterProps> = ({ text, delay, infinite = false }) => {
@@ -13,7 +13,6 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, infinite = false }
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    console.log("hello");
     if (currentIndex < text.length ) {
       timeout = setTimeout(() => {
         setCurrentText(prevText => prevText + text[currentIndex]);
