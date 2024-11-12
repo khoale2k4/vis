@@ -1,88 +1,151 @@
-import React from "react";
-import PricingCard from "./componets/pricingCard";
-import Image from "next/image";
+"use client";
 
-// layout_pricing.webp
-// check-circle-1.webp pointer-events-none
+import { pricingData } from "./variables";
+import PricingCard from "./components/pricingCard";
+import React, { useCallback, useState } from "react";
+import { useScreenView } from "@/hooks/ScreenViewProvider";
+import { AnimatePresence, motion } from "framer-motion";
+
+const variants = {
+    enter: (direction: number) => ({
+        x: direction > 0 ? "100%" : "-100%",
+        opacity: 0,
+        scale: 0,
+    }),
+    center: {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+    },
+    exit: (direction: number) => ({
+        x: direction > 0 ? "-100%" : "100%",
+        opacity: 0,
+        scale: 0,
+    }),
+};
+
+const swipeConfidenceThreshold = 10;
+const swipePower = (offset: number, velocity: number) => Math.abs(offset) * velocity;
 
 export default function PricingContent() {
+    const { isXL } = useScreenView();
+    const [[page, direction], setPage] = useState([0, 0]);
+    const itemCount = pricingData.length;
+
+    const paginate = useCallback(
+        (targetPage: number) => {
+            if (targetPage >= 0 && targetPage < itemCount) {
+                const newDirection = targetPage > page ? 1 : targetPage < page ? -1 : 0;
+                setPage([targetPage, newDirection]);
+            }
+        },
+        [page, itemCount]
+    );
+
+    const handlePagination = (nextPage: number) => {
+        if (nextPage >= 0 && nextPage < itemCount) {
+            paginate(nextPage);
+        }
+    };
+
     return (
-        <div className="flex flex-col items-center h-[1000px]">
+        <div className="flex flex-col items-center h-fit pb-20 max-w-screen overflow-clip">
             <div className="flex flex-col items-center">
-                <h2 className="font-bold text-4xl text-darkblue-500 md:text-5xl lg:text-6xl 2xl:text-7xl">The Price</h2>
-                <p className="font-normal text-2xl text-darkblue-500">Is no more of a problem</p>
+                <h2 className="font-bold text-4xl text-darkblue-500 lg:text-6xl">The Prices</h2>
+                <p className="font-normal text-xl lg:text-2xl text-darkblue-500 -mt-5 lg:-mt-2">Is no more of a problem</p>
             </div>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-5 pt-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 relative">
-                <Image src={'/layout_pricing.webp'} alt="layout" width={200} height={400} className="absolute top-[108px] left-[456px] pointer-events-none hidden 2xl:block"/>
-                <Image src={'/layout_pricing.webp'} alt="layout" width={200} height={400} className="absolute top-[26px] left-[660px] rotate-180 pointer-events-none hidden 2xl:block"/>
-                <PricingCard
-                    title="Migrations"
-                    subtitle="Starting at"
-                    price="$1,950"
-                    period="Annual Subscription"
-                    features={[
-                        "Data Migration",
-                        "Simple Tax Preparation",
-                        "Fund Administration",
-                        "Fund Manager",
-                        "Fund Manager",
-                        "Investor Records",
-                    ]}
-                    buttonText="Get Price Estimate"
-                    buttonId="button1"
-                    buttonColor="brand"
-                />
-                <PricingCard
-                    title="SPVS"
-                    subtitle="Starting at"
-                    price="$9,950"
-                    period="Setup Cost"
-                    features={[
-                        "Series of Entity Included",
-                        "Bank Account",
-                        "Investor Onboarding",
-                        "Fund Manager",
-                        "Regulatory Filings",
-                        "Simple Tax Preparation",
-                    ]}
-                    buttonText="Get Price Estimate"
-                    buttonId="button1"
-                    buttonColor="brand"
-                />
-                <PricingCard
-                    title="Funds"
-                    subtitle="Starting at"
-                    price="$19,500"
-                    period="Annual Subscription"
-                    features={[
-                        "30 Investments Included",
-                        "18 Month Raising Period",
-                        "36 Month Investing Period",
-                        "Annual Financial Statements",
-                        "Multiple Closes Supported",
-                    ]}
-                    buttonText="Get Price Estimate"
-                    buttonId="button1"
-                    buttonColor="brand"
-                />
-                <PricingCard
-                    title="Custom Funds"
-                    subtitle="Starting at"
-                    price="$49,500"
-                    period="Annual Subscription"
-                    features={[
-                        "Custom Investments",
-                        "Custom Raising Period",
-                        "Custom Investment Period",
-                        "Custom Financial Statements",
-                        "Custom Financial Statements",
-                        "Custom Classes",
-                    ]}
-                    buttonText="Get Price Estimate"
-                    buttonId="button1"
-                    buttonColor="brand"
-                />
-            </div>
+
+            {!isXL ? (
+                <div className="grid grid-cols-1 gap-4 pt-10 xl:grid-cols-4">
+                    {pricingData.map((pricing, index) => (
+                        <PricingCard
+                            key={index}
+                            title={pricing.title}
+                            subtitle={pricing.subtitle}
+                            price={pricing.price}
+                            period={pricing.period}
+                            features={pricing.features}
+                            buttonText={pricing.buttonText}
+                            buttonId={pricing.buttonId}
+                            buttonColor={pricing.buttonColor as ButtonColors}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="relative flex pt-6 lg:pt-10">
+                    <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                        {[...Array(6)].map((_, offset) => {
+                            const index = offset - 1;
+                            const isCenter = page === index;
+                            const isVisible = index >= page - 1 && index <= page + 1;
+
+                            return (
+                                <motion.div
+                                    key={index}
+                                    custom={direction}
+                                    variants={variants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={{
+                                        opacity: { duration: 0.5 },
+                                        scale: { duration: 0.5 },
+                                        x: { duration: 0.5 },
+                                        width: { duration: 0 },
+                                    }}
+                                    layout="position"
+                                    className={`group ${isCenter ? 'z-10' : 'z-0'}`}
+                                    style={{
+                                        width: isVisible ? 'auto' : '0px',
+                                        overflow: isVisible ? 'visible' : 'hidden',
+                                    }}
+                                    onClick={() => {
+                                        if (isVisible) { handlePagination(index); };
+                                    }}
+                                    drag={isCenter ? "x" : false}
+                                    dragConstraints={isCenter ? { left: 0, right: 0 } : undefined}
+                                    dragElastic={isCenter ? 1 : undefined}
+                                    onDragEnd={(_, { offset, velocity }) => {
+                                        if (isCenter) {
+                                            const swipe = swipePower(offset.x, velocity.x);
+                                            if (swipe < -swipeConfidenceThreshold && page < itemCount - 1) {
+                                                handlePagination(page + 1);
+                                            } else if (swipe > swipeConfidenceThreshold && page > 0) {
+                                                handlePagination(page - 1);
+                                            }
+                                        }
+                                    }}
+                                >
+                                    {index < 0 || index >= itemCount ? (
+                                        <div className="w-[265px] h-[580px] scale-80" />
+                                    ) : (
+                                        <PricingCard
+                                            active={page === index}
+                                            title={pricingData[index].title}
+                                            subtitle={pricingData[index].subtitle}
+                                            price={pricingData[index].price}
+                                            period={pricingData[index].period}
+                                            features={pricingData[index].features}
+                                            buttonText={pricingData[index].buttonText}
+                                            buttonId={pricingData[index].buttonId}
+                                            buttonColor={pricingData[index].buttonColor as ButtonColors}
+                                        />
+                                    )}
+                                </motion.div>
+                            );
+                        })}
+                    </AnimatePresence>
+                    <div className="absolute -bottom-12 flex justify-center place-items-center w-full space-x-2 mt-6">
+                        {pricingData.map((_, index) => (
+                            <button
+                                key={index}
+                                className={`w-3 h-3 rounded-full transition-all duration-300 ${page === index ? 'bg-darkblue-500' : 'bg-gray-400 scale-90'}`}
+                                onClick={() => paginate(index)}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

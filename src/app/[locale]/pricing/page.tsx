@@ -1,10 +1,8 @@
 import React from "react";
 import PricingContent from "@/views/pricing";
 
-export default function PricingPage(){
+export default function PricingPage() {
     return (
-        <div>
-            <PricingContent/>
-        </div>
+        <PricingContent />
     );
 }
