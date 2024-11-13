@@ -3,12 +3,11 @@ import Image from "next/image";
 import LoginForm from "./form/login";
 import RegisterForm from "./form/register";
 import { ResetForm } from "./form/forgotPassword";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { useState } from "react";
 export default function AuthView() {
-        const show = useSelector((state: RootState) => state.login.show);
+        const [view, setView]=useState<'login' | 'register' | 'reset'>('login');
 	return (
-        <div className="w-screen h-screen flex lg:flex-row flex-col items-center gap-10">
+        <div className="w-screen h-screen flex lg:flex-row flex-col items-center">
                 <div className ="w-full h-32 rounded-full relative block lg:hidden">
                         <Image
                         src="/authentication/AlphaSolutions.webp"
@@ -17,10 +16,10 @@ export default function AuthView() {
                         className="w-full h-full  top-0 left-0 object-cover"
                         />
                 </div>
-                <div className=" bg-white h-1/2 w-full flex-1 px-10 lg:px-28 flex justify-center items-center">
-                        {show === 'login' && < LoginForm /> }
-                        {show === 'register' && < RegisterForm /> }
-                        {show === 'reset' && < ResetForm />}
+                <div className=" bg-lightContainerPrimary h-full w-full flex-1 lg:px-28 grid place-items-center">
+					{view === 'login' && < LoginForm setView={setView}/> }
+					{view === 'register' && < RegisterForm setView={setView}/> }
+					{view === 'reset' && < ResetForm setView={setView}/>}
                 </div>
                 <div className ="w-1/2 h-full relative hidden lg:block">
                         <Image

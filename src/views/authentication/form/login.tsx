@@ -1,125 +1,104 @@
 "use client";
-import { setShowRegister, setShowReset } from "@/store/action/authenPageSlice";
-import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import CustomButton from "@/components/button";
+import CustomInputField from "@/components/input";
+import React, { Dispatch, SetStateAction, useState } from "react";
 interface userLogin {
-        username: string;
-        password: string;
+	username: string;
+	password: string;
 }
-export default function LoginForm() {
-        const dispatch = useDispatch();
-        const [type, setType] = useState('password');
-	const handleToggle = () => {
-		if (type==='password'){
-		   setType('text');
-		} else {
-		   setType('password');
-		}
-	 };
-        const [LoginInfo, setLoginInfo] =useState<userLogin>({
-                username:"",
-                password:"",
-        });
+interface Props {
+	setView: Dispatch<SetStateAction<"login" | "register" | "reset">>;
+}
+type LoginFields = {
+	placeholder: string,
+	id: keyof userLogin,
+	type: InputTypes,
+	important?: boolean,
+	version?: TextInputVersion | SelectInputVersion,
+	select_type?: SelectInputType,
+	options?: SelectInputOptionFormat[],
+	isClearable?: boolean,
+	state?: InputState,
+	dropdownPosition?: DropdownPosition;
+	onChange?: (_id: keyof { pass: string; passCheck: string }, _value: string) => void,
+}
+export default function LoginForm({ setView }: Props) {
+	const loginFields: Array<LoginFields> = [
+		{ id: "username", type: "text", placeholder: "Username", important: true, version: "2" },
+		{ id: "password", type: "password", placeholder: "Password", important: true, version: "2" },
+	];
+	const [LoginInfo, setLoginInfo] = useState<userLogin>({
+		username: "",
+		password: "",
+	});
+	const updateValue = (id: keyof userLogin, value: string | string[]) => {
+		setLoginInfo(prevData => ({ ...prevData, [id]: value }));
+	};
 	return (
-        <form
-        className="h-full animate-appear_right_smooth w-full text-black  flex flex-col items-center"
-        action=""
-        method="POST"
-        onSubmit={() => {}}
-        >
-                <h1 className="font-bold text-5xl">
-                        Hi,
-                </h1>
-                <div className="relative w-full mt-10">
-                        <input
-                                id="username"
-                                name="username"
-                                type="text"
-                                className="px-5 peer h-12 w-full rounded-lg border-1 bg-transparent  border-black text-black placeholder-transparent focus:outline-none focus:border-sky-700"
-                                placeholder=""
-                                value={LoginInfo.username}
-                                onChange={(e) => {
-                                        const newForm = e.target.value;
-                                        const updatedFormValues = {
-                                                ...LoginInfo,
-                                                username: newForm,
-                                        };
-                                        setLoginInfo(updatedFormValues);
-                                }}
-                                required
-                        />
-                        <label
-                                htmlFor="username"
-                                className="absolute rounded-full px-2 tracking-wide left-2 -top-2.5 text-black text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 bg-white peer-focus:text-black peer-focus:text-sm">
-                                        Username/email
-                        </label>
-                </div>
-                <div className="mt-5 w-full relative gap-5 grid grid-cols-1">
-                        <div className="w-full items-center flex gap-5">
-                                <div
-                                className="h-12 px-5 flex items-center w-full rounded-lg border-1 bg-transparent  border-black text-black"
-                                >
-                                <input
-                                        name="password"
-                                        id="password"
-                                        type={type}
-                                        placeholder=""
-                                        className=" peer w-full placeholder-transparent focus:outline-none focus:border-sky-700"
-                                        onChange={(e) => {
-                                                const newForm = e.target.value;
-                                                const updatedFormValues = {
-                                                        ...LoginInfo,
-                                                        password: newForm,
-                                                };
-                                                setLoginInfo(updatedFormValues);
-                                        }}
-                                        required
-                                />
-                                        {type === "text" ?
-                                        <FaEye
-                                        className="text-black cursor-pointer"
-                                        size={20} onClick={handleToggle}/>:
-                                        <FaEyeSlash
-                                        className="text-black cursor-pointer"
-                                        onClick={handleToggle} size={20}/>}
-                                        <label
-                                        htmlFor="password"
-                                        className="absolute rounded-full px-2 tracking-wide left-2 -top-2.5 text-black text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 bg-white peer-focus:text-black peer-focus:text-sm">
-                                        Password
-                                </label>
-                                </div>
+		<form
+			className="h-fit animate-appear_right_smooth w-full rounded-xl
+        shadow-xl text-black bg-white flex flex-col items-center p-20 py-24"
+			action=""
+			method="POST"
+			onSubmit={(e) => {e.preventDefault();}}
+		>
+			<h1 className="font-bold text-5xl animate-wobble">
+				Hi there,
+			</h1>
+			<div className="mt-10 gap-5 flex flex-col w-full ">
+				{loginFields.map(({ id, type, placeholder, version }: LoginFields) => (
+					<CustomInputField
+						placeholder={placeholder}
+						id={id}
+						key={id}
+						type={type}
+						value={LoginInfo[id as keyof userLogin]}
+						setValue={(value: string | string[]) => updateValue(id as keyof userLogin, value)}
+						version={version}
+						inputClassName="!border-gray-500"
+					/>
+				))}
+			</div>
+			<div className="mt-2 w-full relative grid grid-cols-1">
+				<div
+					onClick={() => { setView("reset"); }}
+					className="text-right font-extralight cursor-pointer w-full hover:underline
+                        text-darkblue-400 text-medium place-items-end">
+					Forgot password?
+				</div>
+			</div>
 
+			<div className="mt-20 w-full gap-5 relative flex flex-col">
+				<CustomButton
+					type="submit"
+					version="2"
+					firstDisplayClassName="!bg-darkblue-500 active:scale-x-105 duration-150
+						!text-white text-lg !w-full h-12 rounded-lg"
+					secondDisplayClassName="!bg-orangelogo-500 !rounded-lg"
+				>
+					Sign up
+				</CustomButton>
+				<div className="inline-flex items-center justify-center w-full">
+					<hr className="w-40 h-1 my-5 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+					<div className="absolute px-4 -translate-x-1/2 bg-white left-1/2 font-semibold">
+						OR
+					</div>
+				</div>
+				<span
+					className="text-center font-extralight w-full text-medium  place-items-end"
+				>
+					{"Don't have account? "}
+					<span
+						onClick={() => { setView("register"); }}
+						className="hover:underline text-darkblue-400 cursor-pointer">
+						{"Register now"}
+					</span>
+				</span>
+				{/* <p className="text-red-500 fixed mt-2 text-xxs sm:text-sm">{formErrors.phoneNumberEr}</p> */}
+			</div>
 
-                        {/* <p className="text-red-500 fixed mt-2 text-xxs sm:text-sm">{formErrors.phoneNumberEr}</p> */}
-                        </div>
-                        <div
-                        onClick={() => {dispatch(setShowReset());}}
-                        className="text-right cursor-pointer w-full underline text-darkblue-400 text-sm place-items-end">
-                                Forgot password?
-                        </div>
-                </div>
-                <div className="mt-5 w-full gap-5 relative grid grid-cols-1">
-                        <button
-                        className="bg-darkblue-500 active:scale-x-105 duration-150 text-white text-lg w-full h-12 rounded-lg"
-                        >
-                                Sign in
-                        </button>
-                        <span
-                        className="text-center w-full text-sm place-items-end"
-                        >
-                                {"Don't have account? "}
-                                <span
-                                onClick={() => {dispatch(setShowRegister());}}
-                                className="underline text-darkblue-400 cursor-pointer">
-                                        {"Register now"}
-                                </span>
-                        </span>
-                        {/* <p className="text-red-500 fixed mt-2 text-xxs sm:text-sm">{formErrors.phoneNumberEr}</p> */}
-                </div>
-
-                {/* <p className="text-red-500  mt-5 text-xxs sm:text-sm">{error}</p> */}
-                {/* <button type="submit" className="mt-5 relative bg-blue-900 px-4 py-2 rounded-full w-2/3 text-white text-sm md:text-xl">Đăng nhập</button> */}
-        </form>
+			{/* <p className="text-red-500  mt-5 text-xxs sm:text-sm">{error}</p> */}
+			{/* <button type="submit" className="mt-5 relative bg-blue-900 px-4 py-2 rounded-full w-2/3 text-white text-sm md:text-xl">Đăng nhập</button> */}
+		</form>
 	);
 }

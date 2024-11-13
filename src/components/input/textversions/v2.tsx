@@ -10,10 +10,9 @@ import { Calendar, DateValue } from "@nextui-org/react";
 import { ChangeEvent, useEffect, useState } from "react";
 import { FiCalendar, FiEye, FiEyeOff } from "react-icons/fi";
 
-const TextInputV1 = ({
-    value, setValue, state, placeholder, isClearable = false, id, className, type, disabled = false,
+const TextInputV2 = ({
+    value, setValue, state, placeholder, isClearable = false, id, className, inputClassName, type, disabled = false,
 }: TextInputProps) => {
-
     const InputFieldMessage = useTranslations('InputField');
     const [isClient, setIsClient] = useState<boolean>(false);
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -63,25 +62,34 @@ const TextInputV1 = ({
         return (
             <>
                 <RenderCase renderIf={type !== 'text-area'}>
-                    <input
-                        id={id}
-                        disabled={disabled}
-                        onChange={(e) => handleInputChange(e, type, setValue)}
-                        type={type === "password" && showPassword ? "text" : type}
-                        onBlur={(e) => handleInputChange(e, type, setValue, true)}
-                        value={type === "date" ? value.split('/').reverse().join('-') : value}
-                        placeholder={type === "date" ? "" : (placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
-                        className={`p-2 px-3 text-left border rounded-md w-full dark:bg-darkContainerPrimary
-                        focus:outline-none flex justify-between place-items-center hide-calendar-icon no-spin-button
-                        ${disabled
+                    <div className="relative w-full">
+                        <input
+                            id={(placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
+                            name={(placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
+                            type={type === "password" && showPassword ? "text" : type}
+                            className={`px-5 peer h-12 w-full rounded-lg border-1 bg-transparent 
+                            border-black text-black placeholder-transparent focus:outline-none 
+                            focus:border-sky-700
+                            ${inputClassName}
+                            ${disabled
                                 ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
                                 : state === "error"
                                     ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
                                     : state === "success"
                                         ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
                                         : "dark:border-none"
-                            } `}
-                    />
+                            }`}
+                            placeholder=""
+                            value={type === "date" ? value.split('/').reverse().join('-') : value}
+                            onChange={(e) => handleInputChange(e, type, setValue)}
+                            required
+                        />
+                        <label
+                            htmlFor={(placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
+                            className="absolute rounded-full px-2 tracking-wide left-2 -top-2.5 text-black text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 bg-white peer-focus:text-black peer-focus:text-sm">
+                                {type === "date" ? "" : (placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
+                        </label>
+                    </div>
                 </RenderCase>
 
                 <RenderCase renderIf={type === 'text-area'}>
@@ -94,6 +102,7 @@ const TextInputV1 = ({
                         placeholder={type === "date" ? "" : (placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
                         className={`p-2 px-3 min-h-12 text-left border rounded-md w-full dark:bg-darkContainerPrimary
                         focus:outline-none flex justify-between place-items-center hide-calendar-icon
+                        ${inputClassName}
                         ${disabled
                                 ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
                                 : state === "error"
@@ -106,7 +115,7 @@ const TextInputV1 = ({
                 </RenderCase>
 
                 <RenderCase renderIf={type === "password"}>
-                    <button
+                    <div
                         onClick={togglePasswordVisibility}
                         className="absolute top-1/2 right-2.5 transform -translate-y-1/2 focus:outline-none"
                     >
@@ -117,7 +126,7 @@ const TextInputV1 = ({
                         <RenderCase renderIf={!showPassword}>
                             <FiEye />
                         </RenderCase>
-                    </button>
+                    </div>
                 </RenderCase>
 
                 <RenderCase renderIf={isClearable && !!value && isClient && type !== 'date' && type !== 'password' && type !== 'text-area'}>
@@ -175,4 +184,4 @@ const TextInputV1 = ({
     );
 };
 
-export default TextInputV1;
+export default TextInputV2;
