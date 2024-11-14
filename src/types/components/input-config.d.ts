@@ -1,4 +1,4 @@
-declare type TextInputVersion = '1';
+declare type TextInputVersion = '1'|'2';
 
 declare type SelectInputVersion = '1';
 
@@ -6,7 +6,7 @@ declare type SelectInputType = 'single' | 'multi';
 
 declare type InputState = 'error' | 'success' | 'default';
 
-declare type InputTypes = 'select' | 'text' | 'number' | 'password' | 'date' | 'text-area';
+declare type InputTypes = 'select' | 'text' | 'number' | 'password' | 'date' | 'text-area'| 'email';
 
 declare type BaseInputProps<T extends InputTypes, V extends T extends 'select' ? string[] : string> = {
     type: T;
@@ -14,6 +14,7 @@ declare type BaseInputProps<T extends InputTypes, V extends T extends 'select' ?
 
     id?: string;
     className?: string;
+    inputClassName?: string;
     state?: InputState;
 
     label?: React.ReactNode | string;

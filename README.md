@@ -127,6 +127,10 @@ Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu
 
 2. Commit với message sau: git commit -m "File đã thêm"
 
+## Quy định khi add commit
+
+Khuyến khích dùng hình ảnh ở dạng .webp để tiết kiệm không gian
+
 ## Document về animation
 
 Anh em preview trước và học cách sử dụng ở trên trang web https://animation.ibelick.com

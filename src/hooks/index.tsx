@@ -6,7 +6,7 @@ import { NotificationsProvider } from "./NotificationsProvider";
 import { SubmitNotificationProvider } from "./SubmitNotificationProvider";
 import { DefaultNotificationProvider } from "./DefaultNotificationProvider";
 import { ScreenViewProvider } from "./ScreenViewProvider";
-
+import { SessionProvider } from "./SessionProvider";
 export default function ProviderWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
 
     return (
@@ -15,7 +15,9 @@ export default function ProviderWrapper({ children }: Readonly<{ children: React
                 <SubmitNotificationProvider>
                     <DefaultNotificationProvider>
                         <ScreenViewProvider>
+                            <SessionProvider>
                             {children}
+                            </SessionProvider>
                         </ScreenViewProvider>
                     </DefaultNotificationProvider>
                 </SubmitNotificationProvider>

@@ -6,14 +6,14 @@ import {
   NavbarContent,
   NavbarMenu,
   NavbarMenuItem,
-  NavbarMenuToggle,
+  NavbarMenuToggle
 } from "@nextui-org/react";
 import Link from "next/link";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { useState } from "react";
 
 export default function PublicNavbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
     <Navbar

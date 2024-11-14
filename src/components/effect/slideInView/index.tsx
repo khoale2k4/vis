@@ -3,7 +3,7 @@ import {
   motion,
   useInView,
   useAnimation,
-  TargetAndTransition,
+  TargetAndTransition
 } from "framer-motion";
 import { useEffect, useRef } from "react";
 

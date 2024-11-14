@@ -86,8 +86,41 @@ module.exports = {
         'bounce-fade-in': 'bounce-fade-in 0.6s ease-out',
         'swing-drop-in': 'swing-drop-in 0.6s ease-out',
         'pulse-fade-in': 'pulse-fade-in 0.6s ease-out',
+        'disappear_left_smooth': "disappear-left-smooth 0.3s ease-in-out forwards",
+        'appear_right_smooth': "appear-right-smooth 0.3s ease-in-out forwards",
       },
       keyframes: {
+        "appear-right-smooth": {
+          "0%": {
+						opacity: "0%",
+            transform: "translate3d(50%, 0, 0)",
+          },
+          "100%": {
+						opacity: "100%",
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
+        "disappear-left-smooth": {
+          "0%": {
+						opacity: "100%",
+            transform: "translate3d(0, 0, 0)",
+          },
+          "100%": {
+						opacity: "0%",
+            visibility: "hidden",
+            transform: "translate3d(-50%, 0, 0)",
+          },
+        },
+        "slide-in-right-smooth-fast": {
+          "0%": {
+						opacity: "0%",
+            transform: "translate3d(0, 50%, 0)",
+          },
+          "100%": {
+						opacity: "100%",
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
         'background-shine': {
           from: {
             backgroundPosition: '0 0',
