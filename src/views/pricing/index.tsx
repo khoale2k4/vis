@@ -50,7 +50,7 @@ export default function PricingContent() {
     };
 
     return (
-        <div className="flex flex-col items-center h-fit pb-20 xl:pb-4 max-w-screen overflow-clip mt-32">
+        <div className="flex flex-col items-center h-fit pb-24 xl:pb-8 max-w-screen overflow-clip mt-32">
             <div className="flex flex-col items-center">
                 <SlideInView direction="left2right" duration={1}>
                     <h2 className="font-bold text-4xl text-darkblue-500 lg:text-6xl">The Prices</h2>
