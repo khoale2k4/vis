@@ -3,8 +3,9 @@
 import { pricingData } from "./variables";
 import PricingCard from "./components/pricingCard";
 import React, { useCallback, useState } from "react";
-import { useScreenView } from "@/hooks/ScreenViewProvider";
 import { AnimatePresence, motion } from "framer-motion";
+import SlideInView from "@/components/effect/slideInView";
+import { useScreenView } from "@/hooks/ScreenViewProvider";
 
 const variants = {
     enter: (direction: number) => ({
@@ -49,31 +50,37 @@ export default function PricingContent() {
     };
 
     return (
-        <div className="flex flex-col items-center h-fit pb-20 max-w-screen overflow-clip">
+        <div className="flex flex-col items-center h-fit pb-20 xl:pb-4 max-w-screen overflow-clip mt-32">
             <div className="flex flex-col items-center">
-                <h2 className="font-bold text-4xl text-darkblue-500 lg:text-6xl">The Prices</h2>
-                <p className="font-normal text-xl lg:text-2xl text-darkblue-500 -mt-5 lg:-mt-2">Is no more of a problem</p>
+                <SlideInView direction="left2right" duration={1}>
+                    <h2 className="font-bold text-4xl text-darkblue-500 lg:text-6xl">The Prices</h2>
+                </SlideInView>
+                <SlideInView direction="right2left" duration={1.2}>
+                    <p className="font-normal text-xl lg:text-2xl text-darkblue-500 -mt-5 lg:-mt-2">Is no more of a problem</p>
+                </SlideInView>
             </div>
 
             {!isXL ? (
                 <div className="grid grid-cols-1 gap-4 pt-10 xl:grid-cols-4">
                     {pricingData.map((pricing, index) => (
-                        <PricingCard
-                            key={index}
-                            title={pricing.title}
-                            subtitle={pricing.subtitle}
-                            price={pricing.price}
-                            period={pricing.period}
-                            features={pricing.features}
-                            buttonText={pricing.buttonText}
-                            buttonId={pricing.buttonId}
-                            buttonColor={pricing.buttonColor as ButtonColors}
-                        />
+                        <SlideInView direction="bot2top" duration={0.5 + index * 0.3}>
+                            <PricingCard
+                                key={index}
+                                title={pricing.title}
+                                subtitle={pricing.subtitle}
+                                price={pricing.price}
+                                period={pricing.period}
+                                features={pricing.features}
+                                buttonText={pricing.buttonText}
+                                buttonId={pricing.buttonId}
+                                buttonColor={pricing.buttonColor as ButtonColors}
+                            />
+                        </SlideInView>
                     ))}
                 </div>
             ) : (
                 <div className="relative flex pt-6 lg:pt-10">
-                    <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                    <AnimatePresence custom={direction} mode="popLayout">
                         {[...Array(6)].map((_, offset) => {
                             const index = offset - 1;
                             const isCenter = page === index;

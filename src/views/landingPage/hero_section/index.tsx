@@ -4,6 +4,7 @@ import Main from "@/../public/landing_page/main.svg";
 import Link from "next/link";
 import { TypewriterEffect } from "@/components/effect/typeWriterEffect";
 import { Button } from "@nextui-org/react";
+import SlideInView from "@/components/effect/slideInView";
 
 const slogans = [
   {
@@ -35,31 +36,39 @@ export default function HeroSection() {
         <div className="flex items-center justify-center w-full gap-2 px-8 h-fit md:px-16 lg:px-20 xl:px-38">
           <div className="flex flex-col w-full gap-2 xl:w-1/2 h-fit">
             <h1 className="font-bold text-white">
-              <TypewriterEffect words={slogans} className="text-2xl text-center lg:text-start"/>
+              <TypewriterEffect words={slogans} className="text-2xl text-center lg:text-start min-h-24" />
             </h1>
-            <span className="text-center text-white text-md lg:text-start">
-              Lorem ipsum odor amet, consectetuer adipiscing elit. Dignissim
-              hendrerit vel magnis turpis tellus sit
-            </span>
+            <SlideInView direction="bot2top" duration={1}>
+              <span className="text-center text-white text-md lg:text-start">
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Dignissim
+                hendrerit vel magnis turpis tellus sit
+              </span>
+            </SlideInView>
             <div className="flex flex-col items-center w-full gap-4 mt-14 md:flex-row h-fit">
-              <Button as={Link} href="#" radius="full" size="lg" className="text-lg font-bold text-white bg-orangelogo-500">
-                Start now for free
-              </Button>
-              <Link href="#" className="text-white underline text-md underline-offset-4">
-                {"View our plans ->"}
-              </Link>
+              <SlideInView direction="bot2top" duration={1.3}>
+                <Button as={Link} href="#" radius="full" size="lg" className="text-lg font-bold text-white bg-orangelogo-500">
+                  Start now for free
+                </Button>
+              </SlideInView>
+              <SlideInView direction="bot2top" duration={1.6}>
+                <Link href="/pricing" className="text-white underline text-md underline-offset-4">
+                  {"View our plans ->"}
+                </Link>
+              </SlideInView>
             </div>
           </div>
-          <Image
-            src={Main}
-            alt="Main"
-            placeholder="empty"
-            priority
-            width={250}
-            height={250}
-            quality={100}
-            className="hidden w-1/2 xl:block"
-          />
+          <SlideInView direction="right2left" duration={1.6}>
+            <Image
+              src={Main}
+              alt="Main"
+              placeholder="empty"
+              priority
+              width={250}
+              height={250}
+              quality={100}
+              className="hidden w-full xl:block pl-10"
+            />
+          </SlideInView>
         </div>
       </div>
       <Image
