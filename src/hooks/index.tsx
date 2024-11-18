@@ -7,11 +7,13 @@ import { SubmitNotificationProvider } from "./SubmitNotificationProvider";
 import { DefaultNotificationProvider } from "./DefaultNotificationProvider";
 import { ScreenViewProvider } from "./ScreenViewProvider";
 import { SessionProvider } from "./SessionProvider";
+import { Toaster} from 'sonner'
 export default function ProviderWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
 
     return (
         <Provider store={store}>
-            <NotificationsProvider>
+            <Toaster closeButton  expand={false} richColors position="top-center" />
+            <NotificationsProvider>     
                 <SubmitNotificationProvider>
                     <DefaultNotificationProvider>
                         <ScreenViewProvider>
