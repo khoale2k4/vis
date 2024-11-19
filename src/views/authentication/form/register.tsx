@@ -21,13 +21,15 @@ type RegisterFields = {
 }
 export default function RegisterForm({ setView }: Props) {
 	const registerFields: Array<RegisterFields> = [
-		{ id: "name", type: "text", placeholder: "Fullname", important: true, version: "2" },
+		{ id: "fullName", type: "text", placeholder: "Fullname", important: true, version: "2" },
+		{ id: "address", type: "text", placeholder: "Address", important: true, version: "2" },
 		{ id: "email", type: "email", placeholder: "Email", important: true, version: "2" },
 		{ id: "phone", type: "text", placeholder: "Phone No.", important: true, version: "2" },
 		{ id: "password", type: "password", placeholder: "Password", important: true, version: "2" },
 	];
 	const [RegisterInfo, setRegisterInfo] = useState<createUserInfo>({
-		name: "",
+		fullName: "",
+		address:"",
 		email: "",
 		password: "",
 		phone: ""
@@ -37,12 +39,14 @@ export default function RegisterForm({ setView }: Props) {
 	};
 	const handleRegister = async (e: React.FormEvent) => {
 		e.preventDefault();
+		console.log(RegisterInfo)
 		const handleApi =async ()=>{
 			const response = await fetch('/api/authentication/register', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ 
-					name: RegisterInfo.name,
+					fullName: RegisterInfo.fullName,
+					address: RegisterInfo.address,
 					email: RegisterInfo.email,
 					password: RegisterInfo.password,
 					phone: RegisterInfo.phone
