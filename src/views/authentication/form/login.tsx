@@ -38,21 +38,26 @@ export default function LoginForm({ setView }: Props) {
 	};
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
-		try {
+		const handleLoginApi =async ()=>{
 			const response = await fetch('/api/authentication/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ username: LoginInfo.username, password: LoginInfo.password }),
 			});
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(errorData.message || `HTTP Error ${response.status}`);
-			}
-			const result = await response.json();
-			toast.success(result.message);
-		} catch (error: any) {
-			toast.warning(error.message);
+			const jsonData = await response.json();
+			return jsonData;
 		}
+		toast.promise(
+		handleLoginApi, 
+		{
+			loading: "Loading",
+			success: (res) => {
+				if (res.success)
+					return res.message;
+				else throw Error(res.message)
+			},
+			error: (err) => {return err.message},
+		});
 	};
 	return (
 		<form

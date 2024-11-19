@@ -83,21 +83,18 @@ export class User {
     this.baseUrl = 'http://113.161.103.139/alphastorage/user';
 
   }
-  async signup(info: createUserInfo, token: string) {
+  async signup(info: createUserInfo) {
     try {
-      const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info,
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
+      const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info);
       const data = response.data;
-      return { result: data.result, success: data.success };
+      return { result: data.result, success: data.success, status: response.status };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data.success, message: error?.response?.data.message, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -111,11 +108,14 @@ export class User {
           }
         });
       const data = response.data;
-      return { result: data.result, success: data.success };
+      return { result: data.result, success: data.success, status: response.status  };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -129,11 +129,14 @@ export class User {
           }
         });
       const data = response.data;
-      return { result: data.result, success: data.success };
+      return { result: data.result, success: data.success, status: response.status  };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -150,8 +153,11 @@ export class User {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error});
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -168,8 +174,11 @@ export class User {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -180,8 +189,11 @@ export class User {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 }
@@ -199,8 +211,11 @@ export class Authentication {
       return { result: data.result, success: data.success, status: response.status };
     }
     catch (error: any) {
-      // console.log("Error: ", error.response.data);
-      return error.response.data;
+      // console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -214,8 +229,11 @@ export class Authentication {
       return { result: data.result, success: data.succes, status: response.status };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -229,8 +247,11 @@ export class Authentication {
       return { result: data.result, success: data.success, status: response.status };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -255,8 +276,11 @@ export class UserOfCompany {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -273,8 +297,11 @@ export class UserOfCompany {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -300,8 +327,11 @@ export class Department {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -318,8 +348,11 @@ export class Department {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -336,8 +369,11 @@ export class Department {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -354,8 +390,11 @@ export class Department {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
   async getAllDepartment(currentPage: number, pageSize: number, companyId: string, token: string) {
@@ -371,8 +410,11 @@ export class Department {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 }
@@ -397,8 +439,11 @@ export class Company {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error creating patient: ", error.response.data);
-      return error.response.data;
+      console.log("Error creating patient: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -415,8 +460,11 @@ export class Company {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -433,8 +481,11 @@ export class Company {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -451,8 +502,11 @@ export class Company {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -469,8 +523,11 @@ export class Company {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -487,8 +544,11 @@ export class Company {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 }
@@ -512,8 +572,11 @@ export class UserOfDepartment {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -531,8 +594,11 @@ export class UserOfDepartment {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
   async getAllUserOfDepartment(currentPage: number, pageSize: number, departmentId: string, token: string) {
@@ -548,8 +614,11 @@ export class UserOfDepartment {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -566,8 +635,11 @@ export class UserOfDepartment {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
@@ -584,8 +656,11 @@ export class UserOfDepartment {
       return { result: data.result, success: data.success };
     }
     catch (error: any) {
-      console.log("Error: ", error.response.data);
-      return error.response.data;
+      console.log("Error: ", { success: error?.response?.data, status: error.response ? error.response.status : null });
+      return { 
+        success: error?.response?.data.success, 
+        message: error?.response?.data.message, 
+        status: error.response ? error.response.status : null };
     }
   }
 
