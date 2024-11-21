@@ -1,9 +1,9 @@
+import React from "react";
 import { store } from "@/store";
 import ProviderWrapper from "@/hooks";
 import { getMessages } from "next-intl/server";
+import PublicLayout from "@/layouts/publicLayout";
 import { NextIntlClientProvider } from "next-intl";
-import React from "react";
-import Notifications from "@/components/notifications";
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const messages = await getMessages();
@@ -13,8 +13,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <NextIntlClientProvider messages={messages} locale={locale}>
 
       <ProviderWrapper>
-       <Notifications />
-        {children}
+        <PublicLayout>
+          {children}
+        </PublicLayout>
       </ProviderWrapper>
     </NextIntlClientProvider>
   );
