@@ -54,23 +54,25 @@ const Notifications = () => {
         };
     }, [notifications, progresses, removeNotification]);
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setProgresses((prev) => {
-    //             const newProgresses = { ...prev };
-    //             Object.keys(newProgresses).forEach((id) => {
-    //                 if (newProgresses[id] > 0) {
-    //                     newProgresses[id] -= 100;
-    //                 } else {
-    //                 }
-    //             });
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgresses((prev) => {
+                const newProgresses = { ...prev };
+                Object.keys(newProgresses).forEach((id) => {
+                    if (newProgresses[id] > 0) {
+                        newProgresses[id] -= 100;
+                    } else {
+                        removeNotification(id);
+                        delete newProgresses[id];
+                    }
+                });
 
-    //             return newProgresses;
-    //         });
-    //     }, 100);
+                return newProgresses;
+            });
+        }, 100);
 
-    //     return () => clearInterval(interval);
-    // }, [removeNotification]);
+        return () => clearInterval(interval);
+    }, [removeNotification]);
 
     useEffect(() => {
         if (notifications.length > MAX_NOTIFICATIONS) {
@@ -85,7 +87,7 @@ const Notifications = () => {
     }, [notifications, removeNotification]);
 
     return (
-        <div className="fixed top-4 m-auto inset-x-0 w-72 flex flex-col gap-4 z-[99]">
+        <div className="fixed bottom-4 right-4 w-52 flex flex-col gap-4 z-[99]">
             <AnimatePresence>
                 {notifications.slice().reverse().map((notification) => {
                     const progressWidth = (progresses[notification.id] || 0) / 5000 * 100;
@@ -103,7 +105,7 @@ const Notifications = () => {
                             exit={{ opacity: 0, x: 50 }} layout
                             transition={{ animate: { duration: 0.7 }, exit: { duration: 0.2 } }}
                         >
-                            <div className='w-full h-full px-0 !rounded-lg !shadow-md overflow-clip'
+                            <Button className='w-full h-full px-0 !rounded-md !shadow-md overflow-clip'
                                 onClick={handleNotificationClick}
                             >
                                 <Container
@@ -111,17 +113,17 @@ const Notifications = () => {
                                 >
                                     <div className="flex justify-between items-center">
                                         <NotificationHeader title={notification.title || NotificationIntl('DefaultTitle')} type={notification.type} />
-                                        <div
+                                        <button
                                             className="text-black hover:text-gray-500 dark:text-white"
                                             onClick={(e) => handleCloseNotification(notification.id, e)}
                                         >
                                             <MdClose />
-                                        </div>
+                                        </button>
                                     </div>
 
                                     <NotificationContent message={notification.message} progressWidth={progressWidth} />
                                 </Container>
-                            </div>
+                            </Button>
                         </motion.div>
                     );
                 })}
