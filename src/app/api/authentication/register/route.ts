@@ -5,6 +5,7 @@ export async function POST(req: Request) {
   const auth = new User();
   try {
     const body:createUserInfo = await req.json(); // Parse request body
+    console.log(body)
     const result = await auth.signup(body); // Call the login method
     return NextResponse.json(result);
   } catch (error: any) {

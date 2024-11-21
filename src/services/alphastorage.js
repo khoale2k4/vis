@@ -50,7 +50,7 @@ var User = /** @class */ (function () {
                 switch (_e.label) {
                     case 0:
                         _e.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info)];
+                        return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/signUp"), info)];
                     case 1:
                         response = _e.sent();
                         data = response.data;

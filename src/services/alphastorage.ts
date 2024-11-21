@@ -85,7 +85,7 @@ export class User {
   }
   async signup(info: createUserInfo) {
     try {
-      const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info);
+      const response: AxiosResponse = await axios.post(`${this.baseUrl}/signUp`, info);
       const data = response.data;
       return { result: data.result, success: data.success, status: response.status };
     }
