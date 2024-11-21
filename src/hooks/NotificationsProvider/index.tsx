@@ -46,6 +46,7 @@ export const NotificationsProvider = ({ children }: { children: ReactNode }) => 
 
     return (
         <NotificationsContext.Provider value={{ state, addNotification, removeNotification }}>
+            <Notifications />
             {children}
         </NotificationsContext.Provider>
     );
