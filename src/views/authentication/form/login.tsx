@@ -1,17 +1,18 @@
 "use client";
 import CustomButton from "@/components/button";
 import CustomInputField from "@/components/input";
+import { useNotifications } from "@/hooks/NotificationsProvider";
+import { loginInfo } from "@/services/alphastorage";
+import axios from "axios";
+import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
-interface userLogin {
-	username: string;
-	password: string;
-}
+import { toast } from "sonner";
 interface Props {
 	setView: Dispatch<SetStateAction<"login" | "register" | "reset">>;
 }
 type LoginFields = {
 	placeholder: string,
-	id: keyof userLogin,
+	id: keyof loginInfo ,
 	type: InputTypes,
 	important?: boolean,
 	version?: TextInputVersion | SelectInputVersion,
@@ -23,16 +24,40 @@ type LoginFields = {
 	onChange?: (_id: keyof { pass: string; passCheck: string }, _value: string) => void,
 }
 export default function LoginForm({ setView }: Props) {
+	const { addNotification } = useNotifications();
 	const loginFields: Array<LoginFields> = [
-		{ id: "username", type: "text", placeholder: "Username", important: true, version: "2" },
-		{ id: "password", type: "password", placeholder: "Password", important: true, version: "2" },
+		{ id: "username", type: 'text', placeholder: "Username", important: true, version:  '2'},
+		{ id: "password", type: 'password', placeholder: "Password", important: true, version: '2' },
 	];
-	const [LoginInfo, setLoginInfo] = useState<userLogin>({
+	const [LoginInfo, setLoginInfo] = useState<loginInfo>({
 		username: "",
 		password: "",
 	});
-	const updateValue = (id: keyof userLogin, value: string | string[]) => {
+	const updateValue = (id: keyof loginInfo , value: string | string[]) => {
 		setLoginInfo(prevData => ({ ...prevData, [id]: value }));
+	};
+	const handleLogin = async (e: React.FormEvent) => {
+		e.preventDefault();
+		const handleLoginApi =async ()=>{
+			const response = await fetch('/api/authentication/login', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ username: LoginInfo.username, password: LoginInfo.password }),
+			});
+			const jsonData = await response.json();
+			return jsonData;
+		}
+		toast.promise(
+		handleLoginApi, 
+		{
+			loading: "Loading",
+			success: (res) => {
+				if (res.success)
+					return res.message;
+				else throw Error(res.message)
+			},
+			error: (err) => {return err.message},
+		});
 	};
 	return (
 		<form
@@ -52,8 +77,8 @@ export default function LoginForm({ setView }: Props) {
 						id={id}
 						key={id}
 						type={type}
-						value={LoginInfo[id as keyof userLogin]}
-						setValue={(value: string | string[]) => updateValue(id as keyof userLogin, value)}
+						value={LoginInfo[id as keyof loginInfo ]}
+						setValue={(value: string | string[]) => updateValue(id as keyof loginInfo , value)}
 						version={version}
 						inputClassName="!border-gray-500"
 					/>
