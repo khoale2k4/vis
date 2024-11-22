@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
 import { Authentication, refreshTokenInfo } from '@/services/alphastorage';
-
-
-
 export async function POST(req: Request) {
   const auth = new Authentication();
 
@@ -16,8 +13,11 @@ export async function POST(req: Request) {
     const body: refreshTokenInfo = await req.json(); // Parse body và gán kiểu refreshTokenInfo
     const result = await auth.refreshToken(body, token); // Gọi phương thức refreshToken
     return NextResponse.json(result);
-  } catch (error: any) {
-    console.error('Refresh token error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    // console.error('Refresh token error:', error);
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: 'An unknown error occurred' }, { status: 500 });
   }
 }

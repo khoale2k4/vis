@@ -1,4 +1,3 @@
-import Notifications from "@/components/notifications";
 import { generateNotificationId } from '@/utils/generateRandomId';
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 

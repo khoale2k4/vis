@@ -8,7 +8,10 @@ export async function POST(req: Request) {
     const result = await auth.login(body); // Call the login method
       // Trả về status 200 khi thành công
       return NextResponse.json(result);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: 'An unknown error occurred' }, { status: 500 });
   }
 }

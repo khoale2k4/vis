@@ -11,11 +11,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
-
       <ProviderWrapper>
-        <PublicLayout>
           {children}
-        </PublicLayout>
       </ProviderWrapper>
     </NextIntlClientProvider>
   );

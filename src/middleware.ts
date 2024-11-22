@@ -8,6 +8,6 @@ export const config = {
         '/',
         '/((?!_next|api|static|favicon.ico|public|images|.*\\.png|.*\\.jpg|.*\\.jpeg).*)',
         '/en/:path*',
-        '/vi/:path*'
-    ]
+        '/vi/:path*',
+    ],
 };
