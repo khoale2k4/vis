@@ -2,7 +2,6 @@
 
 import Container from '../container';
 import { MdClose } from 'react-icons/md';
-import { Button } from '@nextui-org/react';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 import NotificationContent from './components/main';
