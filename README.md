@@ -86,7 +86,27 @@ Dự án sẽ chạy tại http://localhost:3003.
 
 ## Tài liệu chung (Document) cho dự án
 
-**Chuyển sang branch /Document để xem cách sử dụng của các global component, style code**:  
+**Chuyển sang branch Document để xem cách sử dụng của các global component, style code**
+
+## Document về animation
+
+Học cách sử dụng ở trên trang web https://animation.ibelick.com
+
+> ⚠️ **Quy định trước khi code**
+> 
+> 1. **Pull code mới nhất về**:  
+>    ```bash
+>    git pull
+>    ```
+> 
+> 2. **Cài đặt lại các thư viện mới nhất**:  
+>    ```bash
+>    npm install
+>    ```
+
+## Gợi ý khi code
+
+- Khuyến khích dùng hình ảnh ở dạng .webp để tiết kiệm không gian
 
 ## Quy định trước khi push branch
 
@@ -126,14 +146,6 @@ Nếu có lỗi, hãy sửa lỗi trước khi đẩy lên branch và yêu cầu
 1. Không được add . mà chỉ được add những file bản thân đã chỉnh sửa
 
 2. Commit với message sau: git commit -m "File đã thêm"
-
-## Quy định khi add commit
-
-Khuyến khích dùng hình ảnh ở dạng .webp để tiết kiệm không gian
-
-## Document về animation
-
-Anh em preview trước và học cách sử dụng ở trên trang web https://animation.ibelick.com
 
 ## Liên hệ
 

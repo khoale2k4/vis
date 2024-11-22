@@ -1,4 +1,4 @@
-declare type TextInputVersion = '1'| '2';
+declare type TextInputVersion = '1'|'2';
 
 declare type SelectInputVersion = '1';
 
