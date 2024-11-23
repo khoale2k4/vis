@@ -77,7 +77,7 @@ export default function RegisterForm({ setView }: Props) {
 
   return (
     <form
-      className="h-fit animate-appear_right_smooth w-full rounded-xl shadow-xl text-black bg-white flex flex-col items-center p-20 py-24"
+      className="h-full lg:h-fit animate-appear_right_smooth w-full text-black flex flex-col items-center "
       method="POST"
       onSubmit={handleRegister}
     >
