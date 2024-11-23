@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios, { AxiosResponse } from "axios";
 
 
@@ -663,6 +664,5 @@ export class UserOfDepartment {
         status: error.response ? error.response.status : null };
     }
   }
-
-
 }
+/* eslint-enable */

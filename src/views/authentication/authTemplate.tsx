@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import LoginForm from "./form/login";
 import RegisterForm from "./form/register";
 import { ResetForm } from "./form/forgotPassword";

@@ -6,9 +6,8 @@ declare type User = {
     username: string;
     phonenumber: string;
     dateOfBirth: string;
-  };  
-  // Định nghĩa kiểu `sessionData`
-  declare type SessionData = {
-    user: User;
-    token: string;
-  };
+};
+declare type SessionData = {
+  user: User;
+  token: string;
+};

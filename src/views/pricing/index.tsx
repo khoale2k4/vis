@@ -63,7 +63,7 @@ export default function PricingContent() {
             {!isXL ? (
                 <div className="grid grid-cols-1 gap-4 pt-10 xl:grid-cols-4">
                     {pricingData.map((pricing, index) => (
-                        <SlideInView direction="bot2top" duration={0.5 + index * 0.3}>
+                        <SlideInView key={index} direction="bot2top" duration={0.5 + index * 0.3}>
                             <PricingCard
                                 key={index}
                                 title={pricing.title}
