@@ -116,9 +116,7 @@ export default function LoginForm({ setView }: Props) {
             {"Register now"}
           </span>
         </span>
-        <a 
-        href="/"
-        className="group relative hover:cursor-pointer inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-extralight text-black duration-500">
+        <a href="/" className="group relative hover:cursor-pointer inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-extralight text-black duration-500">
             <div className="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0">
               Get back to home page
             </div>
@@ -126,8 +124,7 @@ export default function LoginForm({ setView }: Props) {
               <FaArrowLeft /> Get back to home page
             </div>
         </a>
-      </div>
-      
+      </div>      
     </form>
   );
 }

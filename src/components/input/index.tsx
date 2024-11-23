@@ -14,7 +14,7 @@ const TEXT_INPUT_SWITCHER_VERSIONS: Record<TextInputVersion, FC<TextInputProps>>
 
 const CustomInputField = ({ version = '1', label, type, ...props }: InputFieldProps) => {
     const SelectInputComponent = SELECT_INPUT_SWITCHER_VERSIONS[(version ?? '1') as SelectInputVersion] || (() => <></>);
-    const TextInputComponent = TEXT_INPUT_SWITCHER_VERSIONS[(version ?? '1') as TextInputVersion] || (()=><></>);
+    const TextInputComponent = TEXT_INPUT_SWITCHER_VERSIONS[(version ?? '1') as TextInputVersion] || (() => <></>);
     return (
         <div>
             {label}

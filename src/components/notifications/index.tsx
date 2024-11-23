@@ -104,7 +104,7 @@ const Notifications = () => {
                             exit={{ opacity: 0, x: 50 }} layout
                             transition={{ animate: { duration: 0.7 }, exit: { duration: 0.2 } }}
                         >
-                            <Button className='w-full h-full px-0 !rounded-md !shadow-md overflow-clip'
+                            <div className='w-full h-full px-0 !rounded-md !shadow-md overflow-clip'
                                 onClick={handleNotificationClick}
                             >
                                 <Container
@@ -122,7 +122,7 @@ const Notifications = () => {
 
                                     <NotificationContent message={notification.message} progressWidth={progressWidth} />
                                 </Container>
-                            </Button>
+                            </div>
                         </motion.div>
                     );
                 })}

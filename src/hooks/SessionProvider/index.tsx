@@ -5,8 +5,8 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffe
 
 interface SessionContextType {
     status: 'loading' | 'authenticated' | 'unauthenticated';
-    session: sessionData | null;
-    setSession: Dispatch<SetStateAction<sessionData | null>>;
+    session: SessionData | null;
+    setSession: Dispatch<SetStateAction<SessionData | null>>;
 }
 
 const SessionContext = createContext<SessionContextType>({
@@ -17,7 +17,7 @@ const SessionContext = createContext<SessionContextType>({
 
 export function SessionProvider({ children }: { children: ReactNode }) {
     const [status, setStatus] = useState<'loading' | 'authenticated' | 'unauthenticated'>("loading");
-    const [session, setSession] = useState<sessionData | null>(null);
+    const [session, setSession] = useState<SessionData | null>(null);
     const pathName = usePathname();
 
     useEffect(() => {
