@@ -42,6 +42,7 @@ export default function LoginForm({ setView }: Props) {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("hello")
     const handleLoginApi = async () => {
       const response = await fetch("/api/authentication/login", {
         method: "POST",
@@ -49,6 +50,7 @@ export default function LoginForm({ setView }: Props) {
         body: JSON.stringify({ username: LoginInfo.username, password: LoginInfo.password }),
       });
       const jsonData = await response.json();
+      console.log(jsonData)
       return jsonData;
     };
 
@@ -67,7 +69,7 @@ export default function LoginForm({ setView }: Props) {
 
   return (
     <form
-      className="h-fit relative animate-appear_right_smooth w-full rounded-xl shadow-xl text-black bg-white flex flex-col items-center p-20 py-24"
+      className="relative animate-appear_right_smooth w-full text-black  flex flex-col items-center "
       method="POST"
       onSubmit={handleLogin}
     >

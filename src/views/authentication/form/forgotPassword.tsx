@@ -80,10 +80,10 @@ export function ResetForm({ setView }: Props) {
 		setShowSecondForm(true);
 	};
 	return (
-		<div className="h-full lg:h-fit animate-appear_right_smooth w-full text-black ">
+		<div className="animate-appear_right_smooth w-full text-black ">
 			<form
-				className={`h-full  z-50 top-0 left-0 ${!showFirstForm ? "animate-appear_right_smooth" : "animate-disappear_left_smooth hidden"} 
-				w-full gap-5 shadow-xl rounded-xl text-black bg-white flex flex-col items-center p-20 py-24`}
+				className={`z-50 top-0 left-0 ${!showFirstForm ? "animate-appear_right_smooth" : "animate-disappear_left_smooth hidden"} 
+				w-full gap-5 text-black  flex flex-col items-center `}
 				action=""
 				method="POST"
 				onSubmit={handleSubmit}>
@@ -126,9 +126,9 @@ export function ResetForm({ setView }: Props) {
 			</form>
 
 			<form
-				className={`top-0  left-0 z-10 h-full w-full 
+				className={`top-0  left-0 z-10 w-full 
 				${showFirstForm && !showSecondForm ? "animate-appear_right_smooth" : "animate-disappear_left_smooth hidden"} text-black flex 
-				flex-col gap-5 items-center w-full shadow-xl rounded-xl  bg-white p-20 py-24`}
+				flex-col gap-5 items-center w-full`}
 				onSubmit={handleSubmitOtp}
 			>
 				<span className="mt-10 text-2xl font-semibold  text-center">
@@ -174,7 +174,7 @@ export function ResetForm({ setView }: Props) {
 				method="POST"
 				onSubmit={handleChangePass}
 				className={` 
-				gap-5 shadow-xl rounded-xl text-black bg-white flex flex-col items-center p-20 py-24
+				gap-5  text-black  flex flex-col items-center 
 				top-0  left-0 z-20 h-full w-full ${showSecondForm ? "animate-appear_right_smooth" : "hidden"} text-black flex flex-col items-center gap-5`}>
 				<span className="mt-10 text-xl font-semibold  text-center">
 					{"That's you"}
