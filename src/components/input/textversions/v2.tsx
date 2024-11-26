@@ -72,13 +72,13 @@ const TextInputV2 = ({
                             focus:border-sky-700
                             ${inputClassName}
                             ${disabled
-                                ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
-                                : state === "error"
-                                    ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
-                                    : state === "success"
-                                        ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
-                                        : "dark:border-none"
-                            }`}
+                                    ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
+                                    : state === "error"
+                                        ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
+                                        : state === "success"
+                                            ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
+                                            : "dark:border-none"
+                                }`}
                             placeholder=""
                             value={type === "date" ? value.split('/').reverse().join('-') : value}
                             onChange={(e) => handleInputChange(e, type, setValue)}
@@ -87,7 +87,7 @@ const TextInputV2 = ({
                         <label
                             htmlFor={(placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
                             className="absolute rounded-full px-2 tracking-wide left-2 -top-2.5 text-black text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 bg-white peer-focus:text-black peer-focus:text-sm">
-                                {type === "date" ? "" : (placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
+                            {type === "date" ? "" : (placeholder || InputFieldMessage('DefaultTextPlaceHolder'))}
                         </label>
                     </div>
                 </RenderCase>
@@ -117,7 +117,7 @@ const TextInputV2 = ({
                 <RenderCase renderIf={type === "password"}>
                     <div
                         onClick={togglePasswordVisibility}
-                        className="absolute top-1/2 right-2.5 transform -translate-y-1/2 focus:outline-none"
+                        className="absolute top-1/2 right-3.5 transform -translate-y-1/2 focus:outline-none"
                     >
                         <RenderCase renderIf={showPassword}>
                             <FiEyeOff />

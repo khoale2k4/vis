@@ -1,132 +1,133 @@
 "use client";
 
+import { toast } from "sonner";
+import Image from "next/image";
 import CustomButton from "@/components/button";
 import CustomInputField from "@/components/input";
 import { loginInfo } from "@/services/alphastorage";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { FaArrowLeft } from "react-icons/fa";
-import { toast } from "sonner";
-
-interface Props {
-  setView: Dispatch<SetStateAction<"login" | "register" | "reset">>;
-}
+import React, { useState } from "react";
 
 type LoginFields = {
-  placeholder: string;
-  id: keyof loginInfo;
-  type: InputTypes;
-  important?: boolean;
-  version?: TextInputVersion | SelectInputVersion;
-  select_type?: SelectInputType;
-  options?: SelectInputOptionFormat[];
-  isClearable?: boolean;
-  state?: InputState;
-  dropdownPosition?: DropdownPosition;
-  onChange?: (_id: keyof { pass: string; passCheck: string }, _value: string) => void;
+    placeholder: string;
+    id: keyof loginInfo;
+    type: InputTypes;
+    important?: boolean;
+    version?: TextInputVersion | SelectInputVersion;
+    select_type?: SelectInputType;
+    options?: SelectInputOptionFormat[];
+    isClearable?: boolean;
+    state?: InputState;
+    dropdownPosition?: DropdownPosition;
+    onChange?: (_id: keyof { pass: string; passCheck: string }, _value: string) => void;
 };
 
-export default function LoginForm({ setView }: Props) {
-  const loginFields: Array<LoginFields> = [
-    { id: "username", type: "text", placeholder: "Username", important: true, version: "2" },
-    { id: "password", type: "password", placeholder: "Password", important: true, version: "2" },
-  ];
+export default function LoginForm({ setView }: AuthenticationFormProps) {
+    const loginFields: Array<LoginFields> = [
+        { id: "username", type: "text", placeholder: "Username", important: true, version: "2" },
+        { id: "password", type: "password", placeholder: "Password", important: true, version: "2" },
+    ];
 
-  const [LoginInfo, setLoginInfo] = useState<loginInfo>({
-    username: "",
-    password: "",
-  });
+    const [LoginInfo, setLoginInfo] = useState<loginInfo>({
+        username: "",
+        password: "",
+    });
 
-  const updateValue = (id: keyof loginInfo, value: string | string[]) => {
-    setLoginInfo((prevData) => ({ ...prevData, [id]: value }));
-  };
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("hello")
-    const handleLoginApi = async () => {
-      const response = await fetch("/api/authentication/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: LoginInfo.username, password: LoginInfo.password }),
-      });
-      const jsonData = await response.json();
-      console.log(jsonData)
-      return jsonData;
+    const updateValue = (id: keyof loginInfo, value: string | string[]) => {
+        setLoginInfo((prevData) => ({ ...prevData, [id]: value }));
     };
 
-    toast.promise(handleLoginApi(), {
-      loading: "Loading",
-      success: (res) => {
-        if (res.success) {
-          return res.message;
-        } else {
-          throw new Error(res.message);
-        }
-      },
-      error: (err) => err.message,
-    });
-  };
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("hello")
+        const handleLoginApi = async () => {
+            const response = await fetch("/api/authentication/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: LoginInfo.username, password: LoginInfo.password }),
+            });
+            const jsonData = await response.json();
+            console.log(jsonData)
+            return jsonData;
+        };
 
-  return (
-    <form
-      className="relative animate-appear_right_smooth w-full text-black  flex flex-col items-center "
-      method="POST"
-      onSubmit={handleLogin}
-    >
-      <h1 className="font-bold text-5xl animate-wobble">Hi there,</h1>
-      <div className="mt-10 gap-5 flex flex-col w-full">
-        {loginFields.map(({ id, type, placeholder, version }: LoginFields) => (
-          <CustomInputField
-            key={id}
-            placeholder={placeholder}
-            id={id}
-            type={type}
-            value={LoginInfo[id]}
-            setValue={(value: string | string[]) => updateValue(id, value)}
-            version={version}
-            inputClassName="!border-gray-500"
-          />
-        ))}
-      </div>
-      <div className="mt-2 w-full relative grid grid-cols-1">
-        <div
-          onClick={() => setView("reset")}
-          className="text-right font-extralight cursor-pointer w-full hover:underline text-darkblue-400 text-medium place-items-end"
+        toast.promise(handleLoginApi(), {
+            loading: "Loading",
+            success: (res) => {
+                if (res.success) {
+                    return res.message;
+                } else {
+                    throw new Error(res.message);
+                }
+            },
+            error: (err) => err.message,
+        });
+    };
+
+    return (
+        <form
+            className="relative animate-appear_right_smooth !duration-700 w-full text-black flex flex-col items-center"
+            method="POST"
+            onSubmit={handleLogin}
         >
-          Forgot password?
-        </div>
-      </div>
-      <div className="mt-20 w-full gap-5 relative flex flex-col">
-        <CustomButton
-          type="submit"
-          version="2"
-          firstDisplayClassName="!bg-darkblue-500 active:scale-x-105 duration-150 !text-white text-lg !w-full h-12 rounded-lg"
-          secondDisplayClassName="!bg-orangelogo-500 !rounded-lg"
-        >
-          Sign up
-        </CustomButton>
-        <div className="inline-flex items-center justify-center w-full">
-          <hr className="w-40 h-1 my-5 bg-gray-200 border-0 rounded dark:bg-gray-700" />
-          <div className="absolute px-4 -translate-x-1/2 bg-white left-1/2 font-semibold">OR</div>
-        </div>
-        <span className="text-center font-extralight w-full text-medium place-items-end">
-          {"Don't have account? "}
-          <span
-            onClick={() => setView("register")}
-            className="hover:underline text-darkblue-400 cursor-pointer"
-          >
-            {"Register now"}
-          </span>
-        </span>
-        <a href="/" className="group relative hover:cursor-pointer inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-extralight text-black duration-500">
-            <div className="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0">
-              Get back to home page
+            <h1 className="font-bold text-5xl pb-5 whitespace-nowrap -mt-5">Welcome to VIStorage</h1>
+            <div
+                onClick={() => setView("register")}
+                className="mt-10 mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-white border hover:cursor-pointer dark:bg-darkContainerPrimary">
+                <button
+                    className="flex items-center gap-2"
+                >
+                    <Image src="/authentication/VISLOGO-03.webp" alt="Your image" width={25} height={25} />
+                    <span className="text-[14px] font-medium text-black dark:text-white font-sans">
+                        Don't have an account?
+                    </span>
+                </button>
             </div>
-            <div className="absolute flex items-center  group-active:scale-110 translate-x-[150%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100">
-              <FaArrowLeft /> Get back to home page
+            <div className="flex items-center gap-3 w-full">
+                <div className="h-px w-full bg-gray-200" />
+                <p className="text-base text-gray-600 dark:text-white">
+                    {" "}
+                    or{" "}
+                </p>
+                <div className="h-px w-full bg-gray-200" />
             </div>
-        </a>
-      </div>      
-    </form>
-  );
+            <div className="mt-4 flex items-center place-items-center">
+                <p className="text-base w-full text-center font-bold dark:text-white font-sans">
+                    {" "}
+                    Sign in{" "}
+                </p>
+            </div>
+            <div className="mt-8 gap-5 flex flex-col w-full">
+                {loginFields.map(({ id, type, placeholder, version }: LoginFields) => (
+                    <CustomInputField
+                        key={id}
+                        placeholder={placeholder}
+                        id={id}
+                        type={type}
+                        value={LoginInfo[id]}
+                        setValue={(value: string | string[]) => updateValue(id, value)}
+                        version={version}
+                        inputClassName="!border-gray-500 !rounded-lg"
+                    />
+                ))}
+            </div>
+            <div className="mt-2 w-full relative grid grid-cols-1">
+                <div
+                    onClick={() => setView("reset")}
+                    className="text-right font-extralight cursor-pointer w-full hover:underline text-darkblue-400 text-medium place-items-end"
+                >
+                    Forgot password?
+                </div>
+            </div>
+            <div className="mt-10 w-full gap-5 relative flex flex-col">
+                <CustomButton
+                    type="submit"
+                    version="2"
+                    firstDisplayClassName="!bg-darkblue-500 active:scale-x-105 duration-150 !text-white text-lg !w-full h-12 !rounded-lg"
+                    secondDisplayClassName="!bg-orangelogo-500"
+                >
+                    Sign in
+                </CustomButton>
+            </div>
+        </form>
+    );
 }

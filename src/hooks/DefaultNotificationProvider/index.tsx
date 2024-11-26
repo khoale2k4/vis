@@ -1,4 +1,4 @@
-import DefaultNotification from '@/components/defaultnotification';
+import DefaultNotification from '@/components/default_notification';
 import RenderCase from '@/components/render';
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 

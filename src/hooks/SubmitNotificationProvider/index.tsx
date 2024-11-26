@@ -1,5 +1,5 @@
 import RenderCase from '@/components/render';
-import SubmitNotification from '@/components/submitnotification';
+import SubmitNotification from '@/components/submit_notification';
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 
 const submitNotificationReducer = (state: SubmitNotificationState, action: SubmitNotificationAction): SubmitNotificationState => {

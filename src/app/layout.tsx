@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import "./[locale]/globals.css";
 import React from "react";
+import "./[locale]/globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Alpha Storage',
@@ -14,12 +14,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-
   return (
     <html lang="en">
       <body>
         {children}
       </body>
-    </html >
+    </html>
   );
 };

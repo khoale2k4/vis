@@ -1,29 +1,28 @@
 "use client";
 
 import { store } from "@/store";
+import { Toaster } from "sonner";
 import { Provider } from "react-redux";
-import { NotificationsProvider } from "./NotificationsProvider";
+import { ScreenViewProvider } from "./ScreenViewProvider";
+import { AuthenticationProvider } from "./AuthenticationProvider";
 import { SubmitNotificationProvider } from "./SubmitNotificationProvider";
 import { DefaultNotificationProvider } from "./DefaultNotificationProvider";
-import { ScreenViewProvider } from "./ScreenViewProvider";
 import { SessionProvider } from "./SessionProvider";
-import { Toaster } from "sonner";
 export default function ProviderWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
-
     return (
         <Provider store={store}>
-            <NotificationsProvider>
+            <DefaultNotificationProvider>
                 <SubmitNotificationProvider>
-                    <DefaultNotificationProvider>
+                    <AuthenticationProvider>
                         <ScreenViewProvider>
                             <SessionProvider>
-                            <Toaster closeButton  expand={false} richColors position="top-center" />
-                            {children}
+                                <Toaster closeButton expand={false} richColors position="top-center" />
+                                {children}
                             </SessionProvider>
                         </ScreenViewProvider>
-                    </DefaultNotificationProvider>
+                    </AuthenticationProvider>
                 </SubmitNotificationProvider>
-            </NotificationsProvider>
+            </DefaultNotificationProvider>
         </Provider>
     );
 };

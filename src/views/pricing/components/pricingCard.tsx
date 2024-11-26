@@ -39,7 +39,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
             transition-all duration-700 ease-in-out`}
         >
             <Image
-                src={"/layout_pricing.webp"}
+                src={"/pricing/layout_pricing.webp"}
                 alt="layout"
                 width={200}
                 height={400}
@@ -62,7 +62,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 <ul>
                     {features.map((feature, index) => (
                         <li key={index} className="flex flex-row items-center pt-3 gap-2">
-                            <Image src="/check-circle-1.webp" alt="check-icon" width={15} height={15} />
+                            <Image src="/pricing/check-circle-1.webp" alt="check-icon" width={15} height={15} />
                             <p className={`text-darkblue-500 font-normal text-[15px] ${active ? "text-white" : !isXL ? "group-hover:text-white" : ""} w-full whitespace-nowrap`}>
                                 {feature}
                             </p>
