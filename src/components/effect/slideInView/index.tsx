@@ -8,7 +8,7 @@ import {
 import { useEffect, useRef } from "react";
 
 interface Props {
-  children: JSX.Element;
+  children: React.ReactNode;
   width?: "fit-content" | "100%";
   overflow?: "hidden" | "visible";
   direction: "left2right" | "right2left" | "top2bot" | "bot2top";

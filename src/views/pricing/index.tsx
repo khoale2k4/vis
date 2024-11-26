@@ -50,7 +50,7 @@ export default function PricingContent() {
     };
 
     return (
-        <div className="flex flex-col items-center h-fit pb-24 xl:pb-8 max-w-screen overflow-clip mt-32">
+        <div className="flex flex-col items-center h-fit pb-24 xl:pb-8 max-w-screen overflow-clip mt-24">
             <div className="flex flex-col items-center">
                 <SlideInView direction="left2right" duration={1}>
                     <h2 className="font-bold text-4xl text-darkblue-500 lg:text-6xl">The Prices</h2>
@@ -61,7 +61,7 @@ export default function PricingContent() {
             </div>
 
             {!isXL ? (
-                <div className="grid grid-cols-1 gap-4 pt-10 xl:grid-cols-4">
+                <div className="grid grid-cols-1 gap-4 pt-6 xl:grid-cols-4">
                     {pricingData.map((pricing, index) => (
                         <SlideInView key={index} direction="bot2top" duration={0.5 + index * 0.3}>
                             <PricingCard
@@ -79,8 +79,8 @@ export default function PricingContent() {
                     ))}
                 </div>
             ) : (
-                <div className="relative flex pt-6 lg:pt-10">
-                    <AnimatePresence custom={direction} mode="popLayout">
+                <div className="relative flex pt-6 lg:pt-6">
+                    <AnimatePresence custom={direction} mode="popLayout" initial={false}>
                         {[...Array(6)].map((_, offset) => {
                             const index = offset - 1;
                             const isCenter = page === index;
@@ -100,7 +100,7 @@ export default function PricingContent() {
                                         x: { duration: 0.5 },
                                         width: { duration: 0 },
                                     }}
-                                    layout="position"
+                                    layout
                                     className={`group ${isCenter ? 'z-10' : 'z-0'}`}
                                     style={{
                                         width: isVisible ? 'auto' : '0px',

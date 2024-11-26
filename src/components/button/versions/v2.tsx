@@ -27,7 +27,7 @@ const CustomButtonV2 = ({ id, className, color, onClick, children, firstDisplayC
             <span
                 className={`absolute h-0 w-0 rounded-full bg-blue-500 
                 ${secondDisplayClassName} transition-all duration-250 ease-out
-                group-hover:h-56 group-hover:w-full`}
+                group-hover:h-56 group-hover:w-[calc(100%+20px)]`}
             />
             <span className="relative">{children}</span>
         </button>
