@@ -30,10 +30,7 @@ export default function TaskList({ taskList }: Props) {
 
     const toggleExpand = (taskId: string) => {
         setExpandedTaskId((prev) => (prev === taskId ? null : taskId));
-    };
-
-    const handleCloseModal = () => {
-        setExpandedTaskId(null);
+        console.warn(expandedTaskId);
     };
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -163,75 +160,65 @@ export default function TaskList({ taskList }: Props) {
             <Table aria-label="Folder List" removeWrapper>
                 <TableHeader columns={taskColumns}>
                     {(column) => (
-                        <TableColumn key={column.key} align={column.align} className="border-none bg-white">
+                        <TableColumn key={column.key} align={column.align} className="border-none bg-white text-blue-900">
                             {column.label}
                         </TableColumn>
                     )}
                 </TableHeader>
 
-                <TableBody>
+                <TableBody id={"table-body"}>
                     {taskList.map((task) => (
-                        <Dialog key={task.id}>
-                            <DialogTrigger asChild>
+                        <>
+                            <TableRow
+                                key={task.id}
+                                className={`cursor-pointer ${expandedTaskId !== task.id ? "hover:bg-gray-100 border-b" : "bg-gray-300"} border-t`}
+                                onClick={() => toggleExpand(task.id)}
+                            >
+                                {(columnKey) => (
+                                    <TableCell>{renderFolderCell(task, columnKey as TaskColumnKey)}</TableCell>
+                                )}
+                            </TableRow>
+                            {expandedTaskId === task.id && (
                                 <TableRow
-                                    className="cursor-pointer hover:bg-gray-100"
-                                    onClick={() => setSelectedTask(task)}
-                                >
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            {task.file ? (
-                                                <File className="h-4 w-4" />
-                                            ) : (
-                                                <Folder className="h-4 w-4" />
-                                            )}
-                                            <span>
-                                                {task.file?.name || task.folder?.name}
-                                            </span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Avatar className="h-6 w-6">
-                                                <AvatarImage src={task.requestedBy.avatar} />
-                                                <AvatarFallback>{task.requestedBy.name[0]}</AvatarFallback>
-                                            </Avatar>
-                                            {task.requestedBy.name}
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Avatar className="h-6 w-6">
-                                                <AvatarImage src={task.to.avatar} />
-                                                <AvatarFallback>{task.to.name[0]}</AvatarFallback>
-                                            </Avatar>
-                                            {task.to.name}
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Calendar className="h-4 w-4" />
-                                            {formatDate(task.deadline)}
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge variant="secondary">
-                                            {task.frequency}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge>
-                                            Đang thực hiện
-                                        </Badge>
-                                    </TableCell>
+                                    className={`cursor-pointer hover:bg-gray-100`}
+                                    key={`${task.id}-view`}>
+                                    <TableCell>View</TableCell>
+                                    <TableCell>View</TableCell>
+                                    <TableCell>View</TableCell>
+                                    <TableCell>View</TableCell>
                                 </TableRow>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-3xl">
-                                <DialogHeader>
-                                    <DialogTitle>Chi tiết công việc</DialogTitle>
-                                </DialogHeader>
-                                <TaskDetails task={selectedTask} />
-                            </DialogContent>
-                        </Dialog>
+                            )}
+                            {expandedTaskId === task.id && (
+                                <TableRow
+                                    className={`cursor-pointer hover:bg-gray-100`}
+                                    key={`${task.id}-comment`}>
+                                    <TableCell>Comment</TableCell>
+                                    <TableCell>Comment</TableCell>
+                                    <TableCell>Comment</TableCell>
+                                    <TableCell>Comment</TableCell>
+                                </TableRow>
+                            )}
+                            {expandedTaskId === task.id && (
+                                <TableRow
+                                    className={`cursor-pointer hover:bg-gray-100`}
+                                    key={`${task.id}-edit`}>
+                                    <TableCell>Edit</TableCell>
+                                    <TableCell>Edit</TableCell>
+                                    <TableCell>Edit</TableCell>
+                                    <TableCell>Edit</TableCell>
+                                </TableRow>
+                            )}
+                            {expandedTaskId === task.id && (
+                                <TableRow
+                                    className={`cursor-pointer hover:bg-gray-100`}
+                                    key={`${task.id}-note`}>
+                                    <TableCell>Note</TableCell>
+                                    <TableCell>Note</TableCell>
+                                    <TableCell>Note</TableCell>
+                                    <TableCell>Note</TableCell>
+                                </TableRow>
+                            )}
+                        </>
                     ))}
                 </TableBody>
 

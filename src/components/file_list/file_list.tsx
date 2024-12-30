@@ -18,7 +18,12 @@ const fileColumns: Column[] = [
 export default function FileList({ fileList }: Props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+    const [seclectedFile, setSelectedfile] = useState<string | null>(null);
     const menuRef = useRef<HTMLDivElement>(null);
+
+    const toggleSelecte = (id: string) => {
+        setSelectedfile((prev) => (prev === id ? null : id));
+    };
 
     const handleContextMenu = (event: React.MouseEvent<HTMLTableRowElement>, file: FileType) => {
         event.preventDefault(); // Prevent the default context menu
@@ -150,7 +155,7 @@ export default function FileList({ fileList }: Props) {
             <Table aria-label="File List" removeWrapper>
                 <TableHeader columns={fileColumns}>
                     {(column) => (
-                        <TableColumn key={column.key} align={column.align} className="border-none bg-white">
+                        <TableColumn key={column.key} align={column.align} className="border-none bg-white text-blue-900">
                             {column.label}
                         </TableColumn>
                     )}
@@ -158,8 +163,9 @@ export default function FileList({ fileList }: Props) {
                 <TableBody items={fileList} emptyContent="Không có file/folder nào.">
                     {(file) => (
                         <TableRow
+                            onClick={() => toggleSelecte(file.id)}
                             key={file.id}
-                            className="cursor-pointer hover:bg-gray-100 border-b border-t"
+                            className={`cursor-pointer hover:bg-gray-100 border-b border-t ${seclectedFile === file.id ? "bg-gray-300" : ""}`}
                             onContextMenu={(event) => handleContextMenu(event, file)} // Add right-click event handler
                         >
                             {(columnKey) => (

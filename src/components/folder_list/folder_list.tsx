@@ -17,7 +17,13 @@ const folderColumns: Column[] = [
 export default function FolderList({ folderList }: Props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+    const [seclectedFolder, setSelectedfolder] = useState<string | null>(null);
     const menuRef = useRef<HTMLDivElement>(null);
+
+    const toggleSelecte = (id: string) => {
+        setSelectedfolder((prev) => (prev === id ? null : id));
+        console.log(id);
+    };
 
     const handleContextMenu = (event: React.MouseEvent<HTMLTableRowElement>, folder: FolderType) => {
         event.preventDefault(); // Prevent the default context menu
@@ -155,7 +161,7 @@ export default function FolderList({ folderList }: Props) {
             <Table aria-label="Folder List" removeWrapper>
                 <TableHeader columns={folderColumns}>
                     {(column) => (
-                        <TableColumn key={column.key} align={column.align} className="border-none bg-white">
+                        <TableColumn key={column.key} align={column.align} className="border-none bg-white text-blue-900">
                             {column.label}
                         </TableColumn>
                     )}
@@ -164,7 +170,8 @@ export default function FolderList({ folderList }: Props) {
                     {(folder) => (
                         <TableRow
                             key={folder.id}
-                            className="cursor-pointer hover:bg-gray-100 border-b border-t"
+                            className={`cursor-pointer hover:bg-gray-100 border-b border-t ${seclectedFolder === folder.id ? "bg-gray-300 font-bold" : ""}`}
+                            onClick={() => toggleSelecte(folder.id)}
                             onContextMenu={(event) => handleContextMenu(event, folder)} // Add right-click event handler
                         >
                             {(columnKey) => (
@@ -173,6 +180,7 @@ export default function FolderList({ folderList }: Props) {
                         </TableRow>
                     )}
                 </TableBody>
+
             </Table>
             {/* Custom Context Menu */}
             {isMenuOpen && (

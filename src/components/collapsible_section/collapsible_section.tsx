@@ -14,7 +14,7 @@ export default function CollapsibleSection({
   return (
     <div className="">
       <button
-        className="text-left p-3 bg-white hover:bg-gray-100 font-semibold"
+        className="text-left text-lg p-3 bg-white hover:bg-gray-100 font-semibold"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? "▼" : "►"} {title}
